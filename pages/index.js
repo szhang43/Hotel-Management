@@ -6,7 +6,7 @@ const Index = () => {
     return (
         <>
             <div className={styles.homeTitle}>
-                <h1>Homepage</h1>
+                <h1>Test</h1>
             </div>
 
         </>
