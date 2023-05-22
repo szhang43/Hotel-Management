@@ -1,0 +1,75 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .formBox {
+    width: 300px;
+    margin: 10px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 100px;
+  }
+  
+  .inputContainer {
+    display: grid;
+    grid-template-columns: 150px auto;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  
+  .label {
+    width: 150px;
+    margin-right: 10px;
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+
+
+  .contentWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .box {
+    flex-basis: 45%; /* Adjust the width of the boxes as needed */
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 4px;
+  }
+  
+  .box + .box {
+    margin-left: 50px; /* Set the desired gap between the boxes */
+  }
+  
+  .locationInfo {
+    /* Additional styles for location info */
+  }
+  
+  .contactInfo {
+    /* Additional styles for contact info */
+  }
+  
+  
