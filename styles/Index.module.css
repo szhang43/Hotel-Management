@@ -50,17 +50,20 @@
   .contentWrapper {
     display: flex;
     justify-content: space-between;
-    margin-bottom: -60px;
+    margin-bottom: 20px;
   }
   
   .box {
-    width: 48%;
-    background-color: #f5f5f5;
-    padding: 50px;
+    flex-basis: 45%; /* Adjust the width of the boxes as needed */
     border: 1px solid #ccc;
+    padding: 20px;
     border-radius: 4px;
   }
   
+  .box + .box {
+    margin-left: 50px; /* Set the desired gap between the boxes */
+  }
+
   .locationInfo {
     /* Additional styles for location info */
   }
