@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from '@/styles/Index.module.css';
+import Map from '../components/Map';
 
 const DuckNest = () => {
+    const address = '1585 East 13th Avenue, Eugene, OR';
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Duck&apos;s Nest</h1>
@@ -29,8 +31,8 @@ const DuckNest = () => {
                 <div className={styles.box}>
                     <h2>Location</h2>
                     <div className={styles.locationInfo}>
-                        {/* Add your Google Maps component or placeholder here */}
-                        <p>Google Maps or Location Info</p>
+                        {/* Add your map location here */}
+                        <Map address={address} />
                     </div>
                 </div>
 
@@ -38,7 +40,8 @@ const DuckNest = () => {
                     <h2>Contact</h2>
                     <div className={styles.contactInfo}>
                         {/* Add your contact information or placeholder here */}
-                        <p>Contact Information</p>
+                        <p>+1-800-DUCKS</p>
+                        <p>contact@ducksnest.com</p>
                     </div>
                 </div>
             </div>
