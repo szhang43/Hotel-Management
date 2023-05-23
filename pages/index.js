@@ -1,6 +1,9 @@
 import React from 'react';
 import styles from '@/styles/Index.module.css';
 import Map from '../components/Map';
+import Image from 'next/image'
+import homePic from '../public/img/home.jpg';
+
 
 const DuckNest = () => {
     const address = '1585 East 13th Avenue, Eugene, OR';
@@ -8,6 +11,11 @@ const DuckNest = () => {
         <div className={styles.container}>
             <h1 className={styles.title}>Duck&apos;s Nest</h1>
             <hr />
+
+            <div className={styles.imagecontainer}>
+                <Image src={homePic} alt="Beach" width={2024} height={768} />
+                <h1 className={styles.header}>Welcome</h1>
+            </div>
 
             <div className={styles.formBox}>
                 <form className={styles.form}>
@@ -22,7 +30,7 @@ const DuckNest = () => {
                     </div>
 
                     <div className={styles.buttonContainer}>
-                        <button type="submit">Book Now</button>
+                        <button type="submit">Search</button>
                     </div>
                 </form>
             </div>

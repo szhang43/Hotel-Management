@@ -72,4 +72,30 @@
     /* Additional styles for contact info */
   }
   
+  .imagecontainer {
+    /* Adjust size of homepage image */
+    box-sizing: content-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 130%;
+  }
+    .imagecontainer > div {
+      border-radius: 5px;
+    }
+
+    .header {
+      font-size: 80px;
+      color: white;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: fit-content;
+      margin: auto;
+    }
+
   
