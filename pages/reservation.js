@@ -1,13 +1,12 @@
 import React from 'react';
-import styles from '@/styles/Index.module.css';
-import Navbar from '@/components/Navbar';
 
+const AboutPage = () => {
+  return (
+    <div>
+      <h1>Bookings</h1>
+      {/* Add your about content here */}
+    </div>
+  );
+};
 
-export default function Reservation() {
-    return (
-        <>
-            <Navbar />
-            <h1> Reservation </h1>
-        </>
-    );
-}
+export default AboutPage;
