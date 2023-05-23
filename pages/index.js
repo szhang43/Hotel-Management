@@ -1,13 +1,6 @@
 import React from 'react';
 import styles from '@/styles/Index.module.css';
 import Map from '../components/Map';
-<<<<<<< HEAD
-import Image from 'next/image'
-import homePic from '../public/img/home.jpg';
-
-=======
-import Footer from '../components/Footer'
->>>>>>> bf47a41f43edc7aada9899854b355640022ab124
 
 const DuckNest = () => {
     const address = '1585 East 13th Avenue, Eugene, OR';
@@ -15,11 +8,6 @@ const DuckNest = () => {
         <div className={styles.container}>
             <h1 className={styles.title}>Duck&apos;s Nest</h1>
             <hr />
-
-            <div className={styles.imagecontainer}>
-                <Image src={homePic} alt="Beach" width={2024} height={768} />
-                <h1 className={styles.header}>Welcome</h1>
-            </div>
 
             <div className={styles.formBox}>
                 <form className={styles.form}>
@@ -34,11 +22,11 @@ const DuckNest = () => {
                     </div>
 
                     <div className={styles.buttonContainer}>
-                        <button type="submit">Search</button>
+                        <button type="submit">Book Now</button>
                     </div>
                 </form>
             </div>
-
+        
             <div className={styles.contentWrapper}>
                 <div className={styles.box}>
                     <h2>Location</h2>
