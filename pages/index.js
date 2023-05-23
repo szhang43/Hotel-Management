@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '@/styles/Index.module.css';
 import Map from '../components/Map';
+import Footer from '../components/Footer'
 
 const DuckNest = () => {
     const address = '1585 East 13th Avenue, Eugene, OR';
