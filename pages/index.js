@@ -1,9 +1,13 @@
 import React from 'react';
 import styles from '@/styles/Index.module.css';
 import Map from '../components/Map';
+<<<<<<< HEAD
 import Image from 'next/image'
 import homePic from '../public/img/home.jpg';
 
+=======
+import Footer from '../components/Footer'
+>>>>>>> bf47a41f43edc7aada9899854b355640022ab124
 
 const DuckNest = () => {
     const address = '1585 East 13th Avenue, Eugene, OR';

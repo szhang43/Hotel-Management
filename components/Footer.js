@@ -1,6 +1,6 @@
 import React from "react";
 const Footer = () => {
-  return {
+  return (
     <box>
       <h1 style={{textAlign: "center",
                   marginTop: "-50px",
@@ -8,6 +8,6 @@ const Footer = () => {
         Ducks Nest: A Hotel Management System
       </h1>
     </box>
-  };
+  );
 };
 export default Footer;
