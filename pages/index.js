@@ -22,7 +22,7 @@ const DuckNest = () => {
                     </div>
 
                     <div className={styles.buttonContainer}>
-                        <button type="submit">Book Now</button>
+                        <button type="submit">Search</button>
                     </div>
                 </form>
             </div>
