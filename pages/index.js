@@ -1,15 +1,23 @@
 import React from 'react';
 import styles from '@/styles/Index.module.css';
 import Map from '../components/Map';
-import Link from 'next/link';
-
-
+import { useRouter } from 'next/router';
 
 
 const DuckNest = () => {
+    const router = useRouter();
+
     const dateToday = new Date().toLocaleDateString('fr-ca')
     const [checkInDate, setCheckInDate] = React.useState(dateToday);
     const [checkOutDate, setCheckOutDate] = React.useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        router.push({
+            pathname: "/reservation",
+            query: {checkInDate: checkInDate, checkOutDate: checkOutDate}
+        });
+    }
 
     const address = '1585 East 13th Avenue, Eugene, OR';
     return (
@@ -18,11 +26,11 @@ const DuckNest = () => {
             <hr />
 
             <div className={styles.formBox}>
-                <form className={styles.form}>
+                <form className={styles.form} onSubmit={handleSubmit}>
                     <div className={styles.inputContainer}>
                     <div className={styles.label}>Check-in Date:</div>
                         <div className={styles.inputWrapper}>
-                            <input type="date" id="checkInDate" className={styles.input} min={dateToday} onChange={e => {
+                            <input type="date" id="checkInDate" required className={styles.input} min={dateToday} onChange={e => {
                                 if (e.currentTarget.value > checkOutDate) {
                                     setCheckOutDate(e.currentTarget.value)
                                 }
@@ -33,23 +41,17 @@ const DuckNest = () => {
                     <div className={styles.inputContainer}>
                     <div className={styles.label}>Check-out Date:</div>
                         <div className={styles.inputWrapper}>
-                            <input type="date" id="checkOutDate" className={styles.input} min={checkInDate} value={checkOutDate} onChange={e => {setCheckOutDate(e.currentTarget.value)}}/>
+                            <input type="date" id="checkOutDate" required className={styles.input} min={checkInDate} value={checkOutDate} onChange={e => {setCheckOutDate(e.currentTarget.value)}}/>
                         </div>
                     </div>
 
                     <div className={styles.buttonContainer}>
-                    <Link href="/reservation">
-                        <button>Search</button>
-                    </Link>
+                        <button type='submit'>Search</button>
                     </div>
                 </form>
-                </div>
+            </div>
 
-
-
-        
-
-        
+ 
             <div className={styles.contentWrapper}>
                 <div className={styles.box}>
                     <h2>Location</h2>
