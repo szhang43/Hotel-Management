@@ -5,7 +5,7 @@ const NavBar = () => {
   return (
     <nav className={styles.navBar}>
       <div className={styles.logoContainer}>
-        <img src="/img/TempLogo.png" alt="Logo" className={styles.logo} />
+        <img src="/img/Duck.png" alt="Logo" className={styles.logo} />
       </div>
       <ul className={styles.navList}>
         <li className={styles.navItem}>
