@@ -3,7 +3,14 @@ import styles from '@/styles/Index.module.css';
 import Map from '../components/Map';
 import Link from 'next/link';
 
+
+
+
 const DuckNest = () => {
+    const dateToday = new Date().toLocaleDateString('fr-ca')
+    const [checkInDate, setCheckInDate] = React.useState(dateToday);
+    const [checkOutDate, setCheckOutDate] = React.useState("");
+
     const address = '1585 East 13th Avenue, Eugene, OR';
     return (
         <div className={styles.container}>
@@ -14,15 +21,20 @@ const DuckNest = () => {
                 <form className={styles.form}>
                     <div className={styles.inputContainer}>
                     <div className={styles.label}>Check-in Date:</div>
-                    <div className={styles.inputWrapper}>
-                        <input type="date" id="checkInDate" className={styles.input} />
-                    </div>
+                        <div className={styles.inputWrapper}>
+                            <input type="date" id="checkInDate" className={styles.input} min={dateToday} onChange={e => {
+                                if (e.currentTarget.value > checkOutDate) {
+                                    setCheckOutDate(e.currentTarget.value)
+                                }
+                                setCheckInDate(e.currentTarget.value)
+                                }} />
+                        </div>
                     </div>
                     <div className={styles.inputContainer}>
                     <div className={styles.label}>Check-out Date:</div>
-                    <div className={styles.inputWrapper}>
-                        <input type="date" id="checkOutDate" className={styles.input} />
-                    </div>
+                        <div className={styles.inputWrapper}>
+                            <input type="date" id="checkOutDate" className={styles.input} min={checkInDate} value={checkOutDate} onChange={e => {setCheckOutDate(e.currentTarget.value)}}/>
+                        </div>
                     </div>
 
                     <div className={styles.buttonContainer}>
