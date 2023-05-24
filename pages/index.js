@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '@/styles/Index.module.css';
 import Map from '../components/Map';
+import Link from 'next/link';
 
 const DuckNest = () => {
     const address = '1585 East 13th Avenue, Eugene, OR';
@@ -22,7 +23,11 @@ const DuckNest = () => {
                     </div>
 
                     <div className={styles.buttonContainer}>
-                        <button type="submit">Search</button>
+                        <Link href="/reservation">
+                            <button>
+                                Search
+                            </button>
+                        </Link>
                     </div>
                 </form>
             </div>
