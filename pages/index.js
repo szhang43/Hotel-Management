@@ -13,24 +13,30 @@ const DuckNest = () => {
             <div className={styles.formBox}>
                 <form className={styles.form}>
                     <div className={styles.inputContainer}>
-                        <div className={styles.label}>Check-in Date:</div>
+                    <div className={styles.label}>Check-in Date:</div>
+                    <div className={styles.inputWrapper}>
                         <input type="date" id="checkInDate" className={styles.input} />
                     </div>
-
+                    </div>
                     <div className={styles.inputContainer}>
-                        <div className={styles.label}>Check-out Date:</div>
+                    <div className={styles.label}>Check-out Date:</div>
+                    <div className={styles.inputWrapper}>
                         <input type="date" id="checkOutDate" className={styles.input} />
+                    </div>
                     </div>
 
                     <div className={styles.buttonContainer}>
-                        <Link href="/reservation">
-                            <button>
-                                Search
-                            </button>
-                        </Link>
+                    <Link href="/reservation">
+                        <button>Search</button>
+                    </Link>
                     </div>
                 </form>
-            </div>
+                </div>
+
+
+
+        
+
         
             <div className={styles.contentWrapper}>
                 <div className={styles.box}>
