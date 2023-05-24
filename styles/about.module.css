@@ -1,3 +1,14 @@
+ @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
+
+ .aboutTitle {
+    text-align: center;
+    padding-top: 50px;
+    font-family: 'Playfair Display', serif;
+ }
 .aboutus {
     text-align: center;
+    padding: 10px 250px 60px;
+    margin: 0 auto;
+    font-family: 'Jost', sans-serif;
 }
