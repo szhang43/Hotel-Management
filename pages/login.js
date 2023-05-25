@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut} from "firebase/auth"; 
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile} from "firebase/auth"; 
 import { auth } from '@/firebase/initFirebase'
 
 function Login(){
@@ -11,6 +11,12 @@ function Login(){
     const [loginPassword, setLoginPassword] = useState("");
 
     const [user, setUser] = useState({});
+
+    const [registerFirstName, setFirstName] = useState("");
+    const [registerLastName, setLastName] = useState("");
+
+    const [registerPhoneNumber, setPhoneNumber] = useState("");
+
     useEffect(() =>{
         onAuthStateChanged(auth, (currentUser) =>{
             setUser(currentUser);
@@ -23,7 +29,12 @@ function Login(){
                 auth, 
                 registerEmail, 
                 registerPassword); // generate a new user & login
-            console.log(user);
+            
+            const fullName = `${registerFirstName} ${registerLastName}`
+            await updateProfile(user, {
+                displayName: fullName,
+                phoneNumber: registerPhoneNumber,
+            });
         }
         catch(error){
             alert(error.message);
@@ -61,9 +72,17 @@ function Login(){
         <div className = "login">
             <div> 
                 <h3>Register User</h3>
-                <input placeholder="First Name"/>
-                <input placeholder="Last Name"/>
-                <input placeholder="Phone Number"/>
+                <input placeholder="FirstName" onChange = {(event) => 
+                    setFirstName(event.target.value)
+                }/>
+
+                <input placeholder="LastName" onChange = {(event) => 
+                    setLastName(event.target.value)
+                }/>
+
+                <input placeholder="PhoneNumber" onChange = {(event) =>
+                    setPhoneNumber(event.target.value)
+                }/>
         
                 <input placeholder="Email" onChange={(event) => 
                     setRegisterEmail(event.target.value)}/>
@@ -92,7 +111,6 @@ function Login(){
                     setRegisterEmail(event.target.value)
                 }}/>
                 <button onClick={forgotPass}>Reset Password</button>
-                
             </div>
 
 
