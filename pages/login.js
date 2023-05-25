@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut} from "firebase/auth"; 
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut} from "firebase/auth"; 
 import { auth } from '@/firebase/initFirebase'
 
 function Login(){
@@ -46,6 +46,16 @@ function Login(){
     async function logout(){
         await signOut(auth);
     };
+    
+    async function forgotPass() {
+        try {
+          await sendPasswordResetEmail(auth, registerEmail);
+          alert("Check your email to reset password");
+        } catch (error) {
+          alert(error.message);
+        }
+      }
+      
 
     return(
         <div className = "login">
@@ -73,9 +83,18 @@ function Login(){
                 <input placeholder="Password" onChange = {(event) => {
                     setLoginPassword(event.target.value)
                 }}/>
-
                 <button onClick={login}>Login</button>
             </div>
+
+            <div>
+                <h3>Forgot Password</h3> 
+                <input placeholder="Email" onChange = {(event) =>{
+                    setRegisterEmail(event.target.value)
+                }}/>
+                <button onClick={forgotPass}>Reset Password</button>
+                
+            </div>
+
 
             <div>
                 <h3>User Logged in: </h3>
