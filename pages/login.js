@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut} from "firebase/auth"; 
 import { auth } from '@/firebase/initFirebase'
 
@@ -11,9 +11,12 @@ function Login(){
     const [loginPassword, setLoginPassword] = useState("");
 
     const [user, setUser] = useState({});
-    onAuthStateChanged(auth, (currentUser) =>{
-        setUser(currentUser);
-    })
+    useEffect(() =>{
+        onAuthStateChanged(auth, (currentUser) =>{
+            setUser(currentUser);
+        });
+    }, []);
+
     async function register(){
         try{
             const user = await createUserWithEmailAndPassword(
@@ -76,7 +79,7 @@ function Login(){
 
             <div>
                 <h3>User Logged in: </h3>
-                {user?.email}
+                {user ? user.email : "Not logged In"}
                 <button onClick={logout}>Sign Out</button>
             </div>
         </div>
