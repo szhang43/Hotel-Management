@@ -1,9 +1,10 @@
 import React from 'react';
 import {createUserWithEmailAndPassword} from "firebase/auth"; 
 import {auth} from "../firebase/initFirebase";
+import { useState } from 'react';
 
 
-function App(){
+function Login(){
     const [registerEmail, setRegisterEmail] = useState(""); 
     const [registerPassword, setRegisterPassword] = useState("");
 
@@ -63,3 +64,5 @@ function App(){
         </div>
     )
 }
+
+export default Login
