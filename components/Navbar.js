@@ -17,6 +17,9 @@ const NavBar = () => {
         <li className={styles.navItem}>
           <Link href="/admin">Admin</Link>
         </li>
+        <li className={styles.navItem}>
+          <Link href="/login">Login</Link>
+        </li>
       </ul>
     </nav>
   );
