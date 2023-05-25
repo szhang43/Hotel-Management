@@ -1,11 +1,17 @@
 import React from 'react';
 import styles from '@/styles/about.module.css';
+import Image from 'next/image';
 
 const AboutPage = () => {
   return (
     <div className={styles.container}>
 
-      <div className={styles.background}></div>
+      <Image 
+        className={styles.aboutImage}
+          src="/img/about-us-img.jpg"
+          alt="Beach front"
+          fill
+      />
 
       <div className={styles.aboutTitle}>
         <h1>About Us</h1>
