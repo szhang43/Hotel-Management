@@ -73,16 +73,13 @@ function Login(){
             <div> 
                 <h3>Register User</h3>
                 <input placeholder="FirstName" onChange = {(event) => 
-                    setFirstName(event.target.value)
-                }/>
+                    setFirstName(event.target.value)}/>
 
                 <input placeholder="LastName" onChange = {(event) => 
-                    setLastName(event.target.value)
-                }/>
+                    setLastName(event.target.value)}/>
 
                 <input placeholder="PhoneNumber" onChange = {(event) =>
-                    setPhoneNumber(event.target.value)
-                }/>
+                    setPhoneNumber(event.target.value)}/>
         
                 <input placeholder="Email" onChange={(event) => 
                     setRegisterEmail(event.target.value)}/>
