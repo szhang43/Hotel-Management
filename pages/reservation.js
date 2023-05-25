@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import ResRoom from '@/components/ResRoom';
+import styles from '@/styles/reservation.module.css';
 
 
 const Reservation = () => {
@@ -28,7 +29,7 @@ const Reservation = () => {
 
 
     return (
-        <div>
+        <div className={style.container}>
             <h1>Bookings</h1>
             <p>checkIn: {checkInDate}</p>
             <p>checkOut: {checkOutDate}</p>
