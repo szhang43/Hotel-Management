@@ -3,6 +3,7 @@
   padding: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-radius: 4px;
 }
 
@@ -10,16 +11,29 @@
   list-style-type: none;
   display: flex;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .navItem {
-  margin: 0px 20px;
+  margin: 0 30px;
+  font-family: 'Playfair Display', serif;
+}
+
+.navItem a {
+  color: #333;
+  text-decoration: none;
+}
+
+.navItem a:hover {
+  color: #838282;
 }
 
 .logoContainer {
   display: flex;
   align-items: center;
 }
+
 
 .logo {
   width: 150px;
