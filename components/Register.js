@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "@/firebase/initFirebase";
+import { writeUserDB } from "@/firebase/firebaseUtils";
 
 function RegisterForm() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -9,23 +10,35 @@ function RegisterForm() {
   const [registerLastName, setLastName] = useState("");
   const [registerPhoneNumber, setPhoneNumber] = useState("");
 
-  async function register() {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword
-      );
-      const user = userCredential.user;
-      const fullName = `${registerFirstName} ${registerLastName}`;
-      await updateProfile(user, {
-        displayName: fullName,
-        phoneNumber: registerPhoneNumber,
-      });
-    } catch (error) {
-      alert(error.message);
+    async function register() {
+        try {
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                registerEmail,
+                registerPassword
+            );
+            const user = userCredential.user;
+            const fullName = `${registerFirstName} ${registerLastName}`;
+            await updateProfile(user, {
+                displayName: fullName,
+                phoneNumber: registerPhoneNumber,
+            })
+
+            // format user data and send to database
+            const userData = {
+                custFirstName: registerFirstName,
+                custLastName: registerLastName,
+                email: registerEmail,
+                phoneNum: registerPhoneNumber,
+                uid: user.uid
+            }
+            await writeUserDB(userData);
+
+
+        } catch(error) {
+            alert(error.message);
+        }
     }
-  }
 
   return (
     <div>

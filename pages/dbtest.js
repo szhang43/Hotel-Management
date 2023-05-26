@@ -1,7 +1,7 @@
 import React from 'react';
 import { db } from '@/firebase/initFirebase'
 import { doc, getDoc, updateDoc } from "firebase/firestore"
-import { getAvailRooms } from '@/firebase/firebaseUtils';
+import { getAvailRoomsDB } from '@/firebase/firebaseUtils';
 
 // const ReadDataFromCloudFirestore = async () => {
 //     try {
@@ -32,7 +32,7 @@ import { getAvailRooms } from '@/firebase/firebaseUtils';
 // }
 
 const ReadDataFromCloudFirestore = async () => {
-        const availRooms = await getAvailRooms()
+        const availRooms = await getAvailRoomsDB()
         console.log(availRooms)
 }
 

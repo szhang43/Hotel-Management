@@ -1,5 +1,5 @@
 import { db } from "./initFirebase"
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const readDB = async (locArr) => {
     try {
@@ -18,7 +18,7 @@ const readDB = async (locArr) => {
     }
 }
 
-const getAvailRooms = async () => {
+const getAvailRoomsDB = async () => {
     const locArr = ["Hotel Management", "Hotel Info", "Staff", "gDvR2vocLm0IXvq3woDO", "Room Inventory", "3t8ZhDIhRLOzFHcvr8pv"]
 
     return await readDB(locArr).then((data) => {
@@ -26,4 +26,12 @@ const getAvailRooms = async () => {
     })
 }
 
-export {getAvailRooms}
+
+const writeUserDB = async (userData) => {
+    // console.log(userData);
+    const locArr = ["Hotel Management", "Hotel Info", "Customer Info"]
+
+    await setDoc(doc(db, ...locArr, userData.uid), userData)
+}
+
+export { getAvailRoomsDB, writeUserDB }

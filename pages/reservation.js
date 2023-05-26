@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import ResRoom from '@/components/ResRoom';
 import styles from '@/styles/reservation.module.css';
 import { useState, useEffect } from 'react';
-import { getAvailRooms } from '@/firebase/firebaseUtils';
+import { getAvailRoomsDB } from '@/firebase/firebaseUtils';
 
 
 const Reservation = () => {
@@ -16,7 +16,7 @@ const Reservation = () => {
     const [availRooms, setAvailRooms] = useState({large: 0, medium: 0, small: 0})
 
     const updateAvailRooms = () => {
-        getAvailRooms()
+        getAvailRoomsDB()
         .then((data) => {
             console.log(data)
             setAvailRooms(data)
@@ -52,7 +52,7 @@ const Reservation = () => {
             <p>Available Large Rooms: {availRooms.large}</p>
             <p>Available Medium Rooms: {availRooms.medium}</p>
             <p>Available Small Rooms: {availRooms.small}</p>
-            
+
 
             <div className={styles.roomGrid} style={{display: "flex", gap: "30px"}}>
                 {[
