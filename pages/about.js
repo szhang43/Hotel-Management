@@ -4,21 +4,20 @@ import Image from 'next/image';
 
 const AboutPage = () => {
   return (
-    <div className={styles.container}>
+    <><Image
+      className={styles.aboutImage}
+      src="/img/abt.png"
+      alt="Pool"
+      fill />
+      
+      <div className={styles.container}>
 
-      <Image 
-        className={styles.aboutImage}
-          src="/img/abt.png"
-          alt="Pool"
-          fill
-      />
+        <div className={styles.aboutTitle}>
+          <h1>About Us</h1>
+        </div>
 
-      <div className={styles.aboutTitle}>
-        <h1>About Us</h1>
-      </div>
-
-      <div className={styles.aboutus}>
-        <p>Welcome to Duck's Nest, the ultimate destination for adventurous souls 
+        <div className={styles.aboutus}>
+          <p>Welcome to Duck's Nest, the ultimate destination for adventurous souls
             <br />seeking a blend of exotic experiences and luxurious accommodations.<br />
 
             At Duck's Nest, we understand the desires of young travelers who crave unique journeys,<br />
@@ -36,8 +35,8 @@ const AboutPage = () => {
             Let Duck's Nest be your companion as you create lifelong memories in the world's most enchanting destinations.<br />
             <br />
             Book your room today and embark on a remarkable experience that will leave you craving for more.</p>
-      </div>
-    </div>
+        </div>
+      </div></>
   );
 };
 
