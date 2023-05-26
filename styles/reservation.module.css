@@ -26,5 +26,7 @@
 
 .roomGrid {
     margin: auto;
-    
+    padding-left: 27%;
+    padding-top: 2%;
+    padding-bottom: 10%;
 }
