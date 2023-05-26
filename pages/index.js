@@ -21,6 +21,14 @@ const DuckNest = () => {
         });
     }
 
+    // adds 1 day to given date
+    const incrDate = (date) => {
+        let newDate = new Date(date);
+        newDate.setDate(newDate.getDate() + 2);
+        // console.log(newDate.toLocaleDateString('fr-ca'))
+        return newDate.toLocaleDateString('fr-ca');
+    }
+
 
     return (
             <div className={styles.container}>
@@ -35,8 +43,8 @@ const DuckNest = () => {
                         <div className={styles.label}>Check-in Date:</div>
                         <div className={styles.inputWrapper}>
                         <input type="date" id="checkInDate" required className={styles.input} min={dateToday} onChange={e => {
-                            if (e.currentTarget.value > checkOutDate) {
-                                setCheckOutDate(e.currentTarget.value)
+                            if (e.currentTarget.value >= checkOutDate) {
+                                setCheckOutDate(incrDate(e.currentTarget.value))
                             }
                             setCheckInDate(e.currentTarget.value)
                             }}
@@ -46,7 +54,7 @@ const DuckNest = () => {
                         <div className={styles.inputContainer}>
                         <div className={styles.label}>Check-out Date:</div>
                         <div className={styles.inputWrapper}>
-                            <input type="date" id="checkOutDate" required className={styles.input} min={checkInDate} value={checkOutDate} onChange={e => {setCheckOutDate(e.currentTarget.value)}}/>
+                            <input type="date" id="checkOutDate" required className={styles.input} min={incrDate(checkInDate)} value={checkOutDate} onChange={e => {setCheckOutDate(e.currentTarget.value)}}/>
                         </div>
                         </div>
 
