@@ -16,7 +16,7 @@ const Reservation = () => {
     const [availRooms, setAvailRooms] = useState({large: 0, medium: 0, small: 0})
 
     const updateAvailRooms = () => {
-        getAvailRoomsDB()
+        getAvailRoomsDB(checkInDate, checkOutDate)
         .then((data) => {
             console.log(data)
             setAvailRooms(data)
