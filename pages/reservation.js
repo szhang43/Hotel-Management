@@ -26,7 +26,7 @@ const Reservation = () => {
     const genRooms = (roomSize, numRooms) => {
         let rooms = []
         for(let i = 0; i < numRooms; i++){
-            rooms.push(<ResRoom size={roomSize}/>)
+            rooms.push(<ResRoom size={roomSize} checkInDate={checkInDate} checkOutDate={checkOutDate} />)
         }
         return <div className={`${roomSize}Rooms`}>{rooms}</div>
     }

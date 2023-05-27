@@ -54,11 +54,35 @@ const writeUserDB = async (userData) => {
 }
 
 
-const bookRoomDB = async (roomSize, userData) => {
+const bookRoomDB = async (userData, resData) => {
     // make customer doc in customer collection
+    const customer = {
+        "Customer Info": {
+            customerId: userData.uid,
+            fName: userData.fName,
+            lName: userData.lName,
+        },
+        "Reservation Info": {
+            dateIn: resData.dateIn,
+            dateOut: resData.dateOut,
+            roomSize: resData.roomSize,
+        }
+    }
+    let locArr = ["HTM2", "Hotel Info", "Customer"]
+    await setDoc(doc(db, ...locArr, userData.uid), customer)
+
     // make reservation doc in reservations collection
+    const reservation = {
+        bookedBy: userData.uid,
+        bookedFrom: resData.dateIn,
+        bookedTo: resData.dateOut,
+        roomSize: resData.roomSize
+    }
+
+    locArr = ["HTM2", "Hotel Info", "Reservations"]
+    await setDoc(doc(db, ...locArr, userData.uid), reservation)
 }   
 
 
 
-export { getAvailRoomsDB, writeUserDB }
+export { getAvailRoomsDB, writeUserDB, bookRoomDB }
