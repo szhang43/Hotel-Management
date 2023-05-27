@@ -5,8 +5,18 @@ import { getAvailRoomsDB } from '@/firebase/firebaseUtils';
 
 
 const ReadDataFromCloudFirestore = async () => {
-        const availRooms = await getAvailRoomsDB('test','test')
-        console.log(availRooms)
+        // const availRooms = await getAvailRoomsDB('test','test')
+        // console.log(availRooms)
+        const uid = "r4Cy4DpV3jTvwUjLzDMQ0Vq6vNA2"
+
+        await getDoc(doc(db, "HTM2", "Hotel Info", "Customer", uid))
+        .then((doc) => {
+            if(doc.exists()){
+                console.log(doc.data())
+            } else {
+                console.log("No such document exists");
+            }
+        })
 }
 
 

@@ -1,5 +1,5 @@
 import { db } from "./initFirebase"
-import { doc, collection, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { doc, collection, getDoc, getDocs, setDoc, addDoc } from "firebase/firestore";
 
 const readDB = async (locArr) => {
     try {
@@ -55,7 +55,6 @@ const writeUserDB = async (userData) => {
 
 
 const bookRoomDB = async (userData, resData) => {
-    // make customer doc in customer collection
     const customer = {
         "Customer Info": {
             customerId: userData.uid,
@@ -68,10 +67,7 @@ const bookRoomDB = async (userData, resData) => {
             roomSize: resData.roomSize,
         }
     }
-    let locArr = ["HTM2", "Hotel Info", "Customer"]
-    await setDoc(doc(db, ...locArr, userData.uid), customer)
 
-    // make reservation doc in reservations collection
     const reservation = {
         bookedBy: userData.uid,
         bookedFrom: resData.dateIn,
@@ -79,8 +75,25 @@ const bookRoomDB = async (userData, resData) => {
         roomSize: resData.roomSize
     }
 
-    locArr = ["HTM2", "Hotel Info", "Reservations"]
-    await setDoc(doc(db, ...locArr, userData.uid), reservation)
+    
+    //add reservation to reservations collection and keep doc id
+    await addDoc(collection(db, "HTM2", "Hotel Info", "Reservations"), reservation)
+    .then( async (docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+
+        //check if customer doc exists  
+        await getDoc(doc(db, "HTM2", "Hotel Info", "Customer", userData.uid))
+        .then( async (docSnap) => {
+
+            //if not, create it
+            if(!docSnap.exists()){
+                await setDoc(doc(db, "HTM2", "Hotel Info", "Customer", userData.uid), customer)
+            } 
+        })
+
+        //add reservation to customer doc collection with DOC ID OF RESERVATION
+        await setDoc(doc(db, "HTM2", "Hotel Info", "Customer", userData.uid, "Reservations", docRef.id), reservation)
+    })
 }   
 
 
