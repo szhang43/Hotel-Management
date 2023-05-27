@@ -16,7 +16,7 @@ const Reservation = () => {
     const [availRooms, setAvailRooms] = useState({large: 0, medium: 0, small: 0})
 
     const updateAvailRooms = () => {
-        getAvailRoomsDB()
+        getAvailRoomsDB(checkInDate, checkOutDate)
         .then((data) => {
             console.log(data)
             setAvailRooms(data)
@@ -26,7 +26,7 @@ const Reservation = () => {
     const genRooms = (roomSize, numRooms) => {
         let rooms = []
         for(let i = 0; i < numRooms; i++){
-            rooms.push(<ResRoom size={roomSize}/>)
+            rooms.push(<ResRoom size={roomSize} checkInDate={checkInDate} checkOutDate={checkOutDate} />)
         }
         return <div className={`${roomSize}Rooms`}>{rooms}</div>
     }
