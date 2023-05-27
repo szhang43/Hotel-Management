@@ -11,8 +11,8 @@ const NavBar = () => {
   const [user, setUser] = useState("");
 
     useEffect(() =>{
-        onAuthStateChanged(auth, (CurrentUser) => {
-            setUser(CurrentUser);
+        onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
         });
     }, []);
 
@@ -32,10 +32,10 @@ const NavBar = () => {
           <Link href="/admin">Admin</Link>
         </li>
         <li className={styles.navItem}>
-        {user ? (
+        {user && user.email ? (
           <Link href = "/userProfile">{user.displayName}</Link>
         ) : (
-          <Link href = "/login">Logins</Link>)}
+          <Link href = "/login">Login/Sign Up</Link>)}
         </li>
       </ul>
     </nav>

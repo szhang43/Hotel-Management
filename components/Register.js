@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import React, { useState, useEffect } from "react";
+import { createUserWithEmailAndPassword, updateProfile, updatePhoneNumber, } from "firebase/auth";
 import { auth } from "@/firebase/initFirebase";
 import { writeUserDB } from "@/firebase/firebaseUtils";
 
@@ -9,9 +9,46 @@ function RegisterForm() {
   const [registerFirstName, setFirstName] = useState("");
   const [registerLastName, setLastName] = useState("");
   const [registerPhoneNumber, setPhoneNumber] = useState("");
+  var emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  var phoneNumberPattern = /^\d{3}-\d{3}-\d{4}$/;
+  const isFormValid = () => {
+    if (
+      registerEmail.trim() === "" ||
+      registerPassword.trim() === "" ||
+      registerFirstName.trim() === "" ||
+      registerLastName.trim() === "" ||
+      registerPhoneNumber.trim() === ""
+    ) {
+      alert("Please fill in all fields.");
+      return false;
+    }
+    
+    else if (!emailPattern.test(registerEmail)) {
+      alert("Please enter a valid email address");
+      return false;
+    }
+    else if (!phoneNumberPattern.test(registerPhoneNumber)) {
+      alert("Please enter a valid phone number in the format XXX-XXX-XXXX");
+      return false;
+    }
+
+    return true;
+  };
+
+  const clearForm = () => {
+    setRegisterEmail("");
+    setRegisterPassword("");
+    setFirstName("");
+    setLastName("");
+    setPhoneNumber("");
+  };
+
 
     async function register() {
         try {
+          if (!isFormValid()) {
+            return;
+          }
             const userCredential = await createUserWithEmailAndPassword(
                 auth,
                 registerEmail,
@@ -21,8 +58,11 @@ function RegisterForm() {
             const fullName = `${registerFirstName} ${registerLastName}`;
             await updateProfile(user, {
                 displayName: fullName,
-                phoneNumber: registerPhoneNumber,
             })
+        
+            // await updatePhoneNumber(user, {
+            //   phoneNumber: registerPhoneNumber,
+            // });
 
             // format user data and send to database
             const userData = {
@@ -33,7 +73,7 @@ function RegisterForm() {
                 uid: user.uid
             }
             await writeUserDB(userData);
-
+            clearForm();
 
         } catch(error) {
             alert(error.message);
@@ -54,7 +94,7 @@ function RegisterForm() {
       />
 
       <input
-        placeholder="Phone Number"
+        placeholder="000-000-0000"
         onChange={(event) => setPhoneNumber(event.target.value)}
       />
 

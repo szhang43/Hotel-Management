@@ -33,7 +33,6 @@ function Login() {
         <button onClick={logout}>Sign Out</button>
       </div>
 
-      <Link href="/userProfile">Profile</Link>
     </div>
   );
 }
