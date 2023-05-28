@@ -1,5 +1,5 @@
 import { db } from "./initFirebase"
-import { doc, collection, getDoc, getDocs, setDoc, addDoc } from "firebase/firestore";
+import { doc, collection, getDoc, getDocs, setDoc, addDoc, updateDoc } from "firebase/firestore";
 
 const readDB = async (locArr) => {
     try {
@@ -60,11 +60,6 @@ const bookRoomDB = async (userData, resData) => {
             customerId: userData.uid,
             fName: userData.fName,
             lName: userData.lName,
-        },
-        "Reservation Info": {
-            dateIn: resData.dateIn,
-            dateOut: resData.dateOut,
-            roomSize: resData.roomSize,
         }
     }
 
@@ -79,7 +74,8 @@ const bookRoomDB = async (userData, resData) => {
     //add reservation to reservations collection and keep doc id
     await addDoc(collection(db, "HTM2", "Hotel Info", "Reservations"), reservation)
     .then( async (docRef) => {
-        console.log("Document written with ID: ", docRef.id);
+        // set resId to docRef
+        await updateDoc(doc(db, "HTM2", "Hotel Info", "Reservations", docRef.id), {resId: docRef.id})
 
         //check if customer doc exists  
         await getDoc(doc(db, "HTM2", "Hotel Info", "Customer", userData.uid))
@@ -92,7 +88,10 @@ const bookRoomDB = async (userData, resData) => {
         })
 
         //add reservation to customer doc collection with DOC ID OF RESERVATION
-        await setDoc(doc(db, "HTM2", "Hotel Info", "Customer", userData.uid, "Reservations", docRef.id), reservation)
+        await setDoc(doc(db, "HTM2", "Hotel Info", "Customer", userData.uid, "Reservations", docRef.id), {
+            ...reservation,
+            resId: docRef.id
+        })
     })
 }   
 

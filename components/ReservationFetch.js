@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { auth, db } from "@/firebase/initFirebase"; // Assuming you have initialized Firebase with the "db" instance
+import {collection, query, where, getDocs } from "firebase/firestore";
 
 function Reservation() {
   const [reservations, setReservations] = useState([]);
@@ -9,8 +10,10 @@ function Reservation() {
     async function fetchReservations() {
       try {
         const userId = auth.currentUser.uid; // Get the UID of the currently logged-in user
-        const reservationsRef = db.collection("reservations").where("userId", "==", userId);
-        const snapshot = await reservationsRef.get();
+
+        const resRef = collection(db, "HTM2", "Hotel Info", "Reservations");
+        const q = query(resRef, where("bookedBy", "==", userId));
+        const snapshot = await getDocs(q);
 
         const reservationsData = [];
         snapshot.forEach((doc) => {
@@ -33,7 +36,7 @@ function Reservation() {
         <ul>
           {reservations.map((reservation) => (
             <li key={reservation.id}>
-              Reservation ID: {reservation.id} | Status: {reservation.status}
+              Reservation ID: {reservation.resId} | Status: {reservation.status} | Room Size: {reservation.roomSize} | Check In: {reservation.bookedFrom} | Check Out: {reservation.bookedTo}
               {/* Display other reservation information as needed */}
             </li>
           ))}

@@ -19,7 +19,9 @@ const NavBar = () => {
   return (
     <nav className={styles.navBar}>
       <div className={styles.logoContainer}>
-        <img src="/img/Duck.png" alt="Logo" className={styles.logo} />
+        <Link href="/">
+            <img src="/img/Duck.png" alt="Logo" className={styles.logo} />
+        </Link>
       </div>
       <ul className={styles.navList}>
         <li className={styles.navItem}>
