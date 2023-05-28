@@ -1,33 +1,53 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { db } from '@/firebase/initFirebase'
 import { doc, getDoc, updateDoc } from "firebase/firestore"
-import { getAvailRoomsDB } from '@/firebase/firebaseUtils';
+import { getAllProfileDB, listAllResDB, getAllCustDB } from '@/firebase/firebaseUtils';
 
 
-const ReadDataFromCloudFirestore = async () => {
-        // const availRooms = await getAvailRoomsDB('test','test')
-        // console.log(availRooms)
-        const uid = "r4Cy4DpV3jTvwUjLzDMQ0Vq6vNA2"
+const DBtest = () => {
+    const [allRes, setAllRes] = useState([])
+    const [allProfileIds, setAllProfileIds] = useState([])
+    const [allCustIds, setAllCustIds] = useState([])
 
-        await getDoc(doc(db, "HTM2", "Hotel Info", "Customer", uid))
-        .then((doc) => {
-            if(doc.exists()){
-                console.log(doc.data())
-            } else {
-                console.log("No such document exists");
-            }
-        })
-}
+    const listAllRes = async () => {
+        setAllRes(await listAllResDB())
+    }
 
+    const listAllProfileIds = async () => {
+        setAllProfileIds(await getAllProfileDB())
+    }
 
+    const listAllCustIds = async () => {
+        setAllCustIds(await getAllCustDB())
+    }
 
-const dbtest = () => {
     return (
         <div>
             <h1>dbtest</h1>
-            <button onClick={ReadDataFromCloudFirestore}>Read Data From Cloud Firestore</button>
+
+            <button onClick={listAllRes}>List all Reservations</button>
+            <ul>{
+                allRes.map((res) => (
+                    <li key={res.resId}>Reservation ID: {res.resId} <br></br> Status: {res.status} <br></br> Room Size: {res.roomSize} <br></br> Check In: {res.bookedFrom} <br></br> Check Out: {res.bookedTo}</li>
+                ))
+            }</ul>
+
+            <button onClick={listAllProfileIds}>List all Profile IDs</button>
+            <ul>{
+                allProfileIds.map((id) => (
+                    <li key={id}>{id}</li>
+                ))
+            }</ul>
+
+            <button onClick={listAllCustIds}>List all Customer IDs</button>
+            <ul>{
+                allCustIds.map((cust) => (
+                    <li key={cust.customerId}>First Name: {cust.fName} <br></br> Last Name: {cust.lName} <br></br> ID: {cust.customerId}</li>
+                ))
+            }</ul>
+
         </div>
     );
 }
 
-export default dbtest
+export default DBtest
