@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '@/styles/Index.module.css';
 import Map from '@/components/Map';
 import { useRouter } from 'next/router';
+import { getAvailRoomsDB } from '@/firebase/firebaseUtils';
 
 
 const DuckNest = () => {
-    const address = '1585 East 13th Avenue, Eugene, OR';
-
     const router = useRouter();
+    const address = '1585 East 13th Avenue, Eugene, OR';
 
     const dateToday = new Date().toLocaleDateString('fr-ca')
     const [checkInDate, setCheckInDate] = React.useState(dateToday);
     const [checkOutDate, setCheckOutDate] = React.useState("");
+    const [availRooms, setAvailRooms] = useState({large: 0, medium: 0, small: 0})
+
+
+    useEffect(() => {
+        const updateAvailRooms = () => {
+            getAvailRoomsDB(checkInDate, checkOutDate)
+            .then((data) => {
+                console.log(data)
+                setAvailRooms(data)
+            })
+        }
+
+        updateAvailRooms()
+    }, [checkInDate, checkOutDate])
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,7 +41,6 @@ const DuckNest = () => {
     const incrDate = (date) => {
         let newDate = new Date(date);
         newDate.setDate(newDate.getDate() + 2);
-        // console.log(newDate.toLocaleDateString('fr-ca'))
         return newDate.toLocaleDateString('fr-ca');
     }
 
@@ -47,14 +62,16 @@ const DuckNest = () => {
                                 setCheckOutDate(incrDate(e.currentTarget.value))
                             }
                             setCheckInDate(e.currentTarget.value)
-                            }}
-                        />
+                            }
+                        }/>
                         </div>
                         </div>
                         <div className={styles.inputContainer}>
                         <div className={styles.label}>Check-out Date:</div>
                         <div className={styles.inputWrapper}>
-                            <input type="date" id="checkOutDate" required className={styles.input} min={incrDate(checkInDate)} value={checkOutDate} onChange={e => {setCheckOutDate(e.currentTarget.value)}}/>
+                            <input type="date" id="checkOutDate" required className={styles.input} min={incrDate(checkInDate)} value={checkOutDate} onChange={e => {
+                                setCheckOutDate(e.currentTarget.value)
+                            }}/>
                         </div>
                         </div>
 
@@ -62,6 +79,21 @@ const DuckNest = () => {
                             <button>Search</button>
                         </div>
                     </form>
+                    
+                    <div>
+                        {checkOutDate ? (
+                            <div>
+                                Available Rooms:
+                                <ul>
+                                    <li>Large: {availRooms.large}</li>
+                                    <li>Medium: {availRooms.medium}</li>
+                                    <li>Small: {availRooms.small}</li>
+                                </ul>
+                            </div>
+
+                        ) : <p>Select a date range to see availibility</p>}
+                    </div>  
+
                 </div>
                 
             <div className={styles.contentWrapper}>

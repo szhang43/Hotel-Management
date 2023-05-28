@@ -56,11 +56,9 @@ const writeUserDB = async (userData) => {
 
 const bookRoomDB = async (userData, resData) => {
     const customer = {
-        "Customer Info": {
-            customerId: userData.uid,
-            fName: userData.fName,
-            lName: userData.lName,
-        }
+        customerId: userData.uid,
+        fName: userData.fName,
+        lName: userData.lName,
     }
 
     const reservation = {
@@ -119,9 +117,46 @@ const deleteResDB = async (resId, userId) => {
 }
 
 
-const clearAllResDB = async () => {
+const getAllProfileDB = async () => {
+    let allUserId = []
+    const profileSnap = await getDocs(collection(db, "HTM2", "Hotel Info", "Profile"));
+    profileSnap.forEach((doc) => {
+        allUserId.push(doc.get("uid"))
+    })
+    console.log(allUserId);
+    return allUserId
+}
 
+const getAllCustDB = async () => {
+    let allCustId = []
+    const profileSnap = await getDocs(collection(db, "HTM2", "Hotel Info", "Customer"));
+    profileSnap.forEach((doc) => {
+        allCustId.push(doc.data())
+    })
+    console.log(allCustId);
+    return allCustId
 }
 
 
-export { getAvailRoomsDB, writeUserDB, bookRoomDB, deleteResDB }
+const listAllResDB = async () => {
+    let allRes = []
+
+    const resSnap = await getDocs(collection(db, "HTM2", "Hotel Info", "Reservations"));
+    resSnap.forEach((doc) => {
+        allRes.push(doc.data())
+    })
+
+    return allRes
+}
+
+
+
+export {
+    getAvailRoomsDB,
+    writeUserDB,
+    bookRoomDB,
+    deleteResDB,
+    listAllResDB,
+    getAllProfileDB,
+    getAllCustDB,
+}
