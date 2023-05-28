@@ -23,13 +23,13 @@ const Reservation = () => {
         })
     }
 
-    // const genRooms = (roomSize, numRooms) => {
-    //     let rooms = []
-    //     for(let i = 0; i < numRooms; i++){
-    //         rooms.push(<ResRoom size={roomSize} checkInDate={checkInDate} checkOutDate={checkOutDate} />)
-    //     }
-    //     return <div className={`${roomSize}Rooms`}>{rooms}</div>
-    // }
+    const genRooms = (roomSize, numRooms) => {
+        let rooms = []
+        for(let i = 0; i < numRooms; i++){
+            rooms.push(<ResRoom size={roomSize} checkInDate={checkInDate} checkOutDate={checkOutDate} />)
+        }
+        return <div className={`${roomSize}Rooms`}>{rooms}</div>
+    }
 
 
     return (
@@ -67,6 +67,7 @@ const Reservation = () => {
                     </p>
                     <p>Rooms Available: {availRooms.small}</p>
                     <p>Price: $</p>
+                    <ResRoom size={"small"} checkInDate={checkInDate} checkOutDate={checkOutDate} />
                 </div>
 
                 <div className={styles.size}>
@@ -82,6 +83,7 @@ const Reservation = () => {
                     </p>
                     <p>Rooms Available: {availRooms.medium}</p>
                     <p>Price : $$</p>
+                    <ResRoom size={"medium"} checkInDate={checkInDate} checkOutDate={checkOutDate} />
                 </div>
 
                 <div className={styles.size}>
@@ -94,10 +96,11 @@ const Reservation = () => {
                     </p>
                     <p>Rooms Available: {availRooms.large}</p>
                     <p>Price: $$$ </p>
+                    <ResRoom size={"large"} checkInDate={checkInDate} checkOutDate={checkOutDate} />
                 </div>
             </div>
-{/* 
-            <div className={styles.roomGrid} style={{display: "flex", gap: "30px"}}>
+
+            {/* <div className={styles.roomGrid} style={{display: "flex", gap: "30px"}}>
                 {[
                     genRooms("large", availRooms.large),
                     genRooms("medium", availRooms.medium),
