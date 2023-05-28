@@ -35,7 +35,14 @@ const NavBar = () => {
         </li>
         <li className={styles.navItem}>
         {user && user.email ? (
-          <Link href = "/userProfile">{user.displayName}</Link>
+
+          // <Link href = "/userProfile">
+          //   <img src= "/img/user.png" alt={user.displayName} />
+          // </Link>
+          <Link href = "/userProfile">
+           {user.displayName.split(" ")[0][0]}
+           {user.displayName.split(" ")[1][0]}
+          </Link>
         ) : (
           <Link href = "/login">Login/Sign Up</Link>)}
         </li>

@@ -5,6 +5,8 @@ import Link from "next/link";
 import RegisterForm from "@/components/Register";
 import LoginForm from "@/components/Login";
 import ForgotPasswordForm from "@/components/ForgotPass";
+import styles from '@/styles/Login.module.css';
+
 
 function Login() {
   const [user, setUser] = useState({});
@@ -21,16 +23,12 @@ function Login() {
 
   return (
     <div className="login">
-      <RegisterForm />
+      <div className="container">
+        <RegisterForm />
 
-      <LoginForm />
+        <LoginForm />
 
-      <ForgotPasswordForm />
-
-      <div>
-        <h3>User Logged in: </h3>
-        {user ? user.email : "Not logged In"}
-        <button onClick={logout}>Sign Out</button>
+        <ForgotPasswordForm />
       </div>
 
     </div>

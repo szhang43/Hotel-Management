@@ -45,7 +45,11 @@ function Reservation() {
         <ul>
           {reservations.map((reservation) => (
             <li key={reservation.id}>
-              Reservation ID: {reservation.resId} | Status: {reservation.status} | Room Size: {reservation.roomSize} | Check In: {reservation.bookedFrom} | Check Out: {reservation.bookedTo}
+              <p>Reservation ID: {reservation.resId}</p>
+              <p>Status: {reservation.status}</p>
+              <p>Room Size: {reservation.roomSize}</p> 
+              <p>Check In: {reservation.bookedFrom}</p>
+              <p>Check Out: {reservation.bookedTo}</p>
               <button onClick={() => {cancelRes(reservation.resId)}}>Cancel Reservation</button>
               {/* Display other reservation information as needed */}
             </li>
