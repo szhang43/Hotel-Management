@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { auth, db } from "@/firebase/initFirebase"; // Assuming you have initialized Firebase with the "db" instance
 import {collection, query, where, getDocs } from "firebase/firestore";
+import { deleteResDB } from "@/firebase/firebaseUtils";
+import Router from "next/router";
 
 function Reservation() {
   const [reservations, setReservations] = useState([]);
@@ -30,6 +32,13 @@ function Reservation() {
     fetchReservations();
   }, []);
 
+
+  const cancelRes = async (resId) => {
+    await deleteResDB(resId, auth.currentUser.uid);
+    alert(`Reservation with ID "${resId}" has been cancelled`)
+    Router.reload();
+  }
+
   return (
     <div>
       {reservations.length > 0 ? (
@@ -37,6 +46,7 @@ function Reservation() {
           {reservations.map((reservation) => (
             <li key={reservation.id}>
               Reservation ID: {reservation.resId} | Status: {reservation.status} | Room Size: {reservation.roomSize} | Check In: {reservation.bookedFrom} | Check Out: {reservation.bookedTo}
+              <button onClick={() => {cancelRes(reservation.resId)}}>Cancel Reservation</button>
               {/* Display other reservation information as needed */}
             </li>
           ))}

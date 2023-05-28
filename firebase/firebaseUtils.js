@@ -1,5 +1,5 @@
 import { db } from "./initFirebase"
-import { doc, collection, getDoc, getDocs, setDoc, addDoc, updateDoc } from "firebase/firestore";
+import { doc, collection, getDoc, getDocs, setDoc, addDoc, updateDoc, deleteDoc } from "firebase/firestore";
 
 const readDB = async (locArr) => {
     try {
@@ -93,8 +93,35 @@ const bookRoomDB = async (userData, resData) => {
             resId: docRef.id
         })
     })
-}   
+}  
 
 
 
-export { getAvailRoomsDB, writeUserDB, bookRoomDB }
+
+const deleteResDB = async (resId, userId) => {
+    // delete res doc from res collection
+    const resDoc = doc(db, "HTM2", "Hotel Info", "Reservations", resId)
+    const docSnap = await getDoc(resDoc)
+    if(docSnap.exists()){
+        await deleteDoc(resDoc);
+    } else {
+        console.log("Reservation doc does not exist");
+    }
+
+    // delete res doc in customer reservations collection
+    const customerResDoc = doc(db, "HTM2", "Hotel Info", "Customer", userId, "Reservations", resId)
+    const customerResDocSnap = await getDoc(customerResDoc)
+    if(customerResDocSnap.exists()){
+        await deleteDoc(customerResDoc);
+    } else {
+        console.log("Customer reservation doc does not exist");
+    }
+}
+
+
+const clearAllResDB = async () => {
+
+}
+
+
+export { getAvailRoomsDB, writeUserDB, bookRoomDB, deleteResDB }
