@@ -40,3 +40,9 @@
   margin-right: 10px;
   /* Add other styles for the logo */
 }
+
+.loggedInUser{
+  width: 25px;
+  height: auto;
+  border-radius: 50%;
+}

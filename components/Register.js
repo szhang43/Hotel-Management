@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { createUserWithEmailAndPassword, updateProfile, updatePhoneNumber, } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, updatePhoneNumber, onAuthStateChanged} from "firebase/auth";
 import { auth } from "@/firebase/initFirebase";
 import { writeUserDB } from "@/firebase/firebaseUtils";
+import { useRouter } from 'next/router';
 import styles from '@/styles/Login.module.css';
 
 
@@ -11,8 +12,24 @@ function RegisterForm() {
   const [registerFirstName, setFirstName] = useState("");
   const [registerLastName, setLastName] = useState("");
   const [registerPhoneNumber, setPhoneNumber] = useState("");
+  
+  const router = useRouter();
+
   var emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   var phoneNumberPattern = /^\d{3}-\d{3}-\d{4}$/;
+  
+  const [user, setUser] = useState("");
+  
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   const isFormValid = () => {
     if (
       registerEmail.trim() === "" ||
@@ -61,21 +78,22 @@ function RegisterForm() {
             await updateProfile(user, {
                 displayName: fullName,
             })
-        
+            
             // await updatePhoneNumber(user, {
-            //   phoneNumber: registerPhoneNumber,
-            // });
-
-            // format user data and send to database
-            const userData = {
+              //   phoneNumber: registerPhoneNumber,
+              // });
+              
+              // format user data and send to database
+              const userData = {
                 custFirstName: registerFirstName,
                 custLastName: registerLastName,
                 email: registerEmail,
                 phoneNum: registerPhoneNumber,
                 uid: user.uid
-            }
-            await writeUserDB(userData);
-            clearForm();
+              }
+              await writeUserDB(userData);
+              clearForm();
+              router.push("/");
 
         } catch(error) {
             alert(error.message);
@@ -106,6 +124,7 @@ function RegisterForm() {
       />
 
       <input
+        type="password"
         placeholder="Password"
         onChange={(event) => setRegisterPassword(event.target.value)}
       />

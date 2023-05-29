@@ -31,7 +31,8 @@ function UserProfile(){
                 </div>
                 
             ) : (
-                <p>Please login or create an account</p>
+                <p>Please <Link href="login"> Login </Link> 
+                or <Link href="login"> create </Link>  an account</p>
             )}
             <Link href="/">Back</Link>
         </div>

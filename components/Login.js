@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from 'next/router';
 import { auth } from "@/firebase/initFirebase";
 import styles from '@/styles/Login.module.css';
 
@@ -7,12 +8,14 @@ import styles from '@/styles/Login.module.css';
 function LoginForm() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-
+  const router = useRouter();
   async function login() {
     try {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      router.push("/");
     } catch (error) {
       alert(error.message);
+
     }
   }
 
@@ -25,6 +28,7 @@ function LoginForm() {
       />
 
       <input
+        type="password"
         placeholder="Password"
         onChange={(event) => setLoginPassword(event.target.value)}
       />
