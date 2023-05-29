@@ -1,5 +1,5 @@
 import React from 'react';
-import { bookRoomDB } from '@/firebase/firebaseUtils';
+// import { bookRoomDB } from '@/firebase/firebaseUtils';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import styles from '@/styles/reservation.module.css';
 import { useRouter } from 'next/router';
@@ -25,22 +25,22 @@ const ResRoom = (props) => {
                 roomSize: props.size,
             }
 
-            bookRoomDB(userData, resData)
-            .then(() => {
-                // alert("Room Booked!");
-                router.push("/ResSuccess")
-                
-            })
+            // bookRoomDB(userData, resData)
+            // .then(() => {
+                router.push(
+                    {pathname: "/checkout",
+                    query: resData
+                });
+            // })
         }
         else{
-            alert("Please login first!");
+            router.push("/login");
         }
     }
 
 
     return (
         <div>
-            {/* <h1>{props.size}</h1> */}
             <button className={styles.reserveButton} onClick={bookRoom}>Reserve Room</button>
         </div>
     )
