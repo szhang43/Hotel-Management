@@ -1,10 +1,12 @@
 import React from 'react';
+import AddForm from '../components/AddInventory.js';
+import RemoveForm from '../components/RemoveInventory.js';
 
 const Admin = () => {
   return (
     <div>
-      <h1>Hotel Management Page</h1>
-      {/* Add your content here */}
+      <AddForm />
+      <RemoveForm />
     </div>
   );
 };
