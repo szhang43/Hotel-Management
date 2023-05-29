@@ -143,8 +143,38 @@
 
 .locationInfo {
   /* Additional styles for location info */
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+
 }
 
 .contactInfo {
   /* Additional styles for contact info */
+  width: 230px;
+}
+
+.contactInfo input{
+  width: 169px;
+  margin-left: 27px;
+  margin-right: 27px;
+  margin-bottom: 2px;
+  display: flex;
+}
+
+.contactInfo textarea{
+  padding: 2px;
+  resize: none;
+  width: 171px;
+  height: 200px;
+}
+
+.contactInfo button{
+  width: 171px;
+  padding: 10px;
+  margin-top: 12px;
+  background-color: #5c5b5b;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }

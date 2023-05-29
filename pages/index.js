@@ -13,7 +13,8 @@ const DuckNest = () => {
     const [checkInDate, setCheckInDate] = React.useState(dateToday);
     const [checkOutDate, setCheckOutDate] = React.useState("");
     const [availRooms, setAvailRooms] = useState({large: 0, medium: 0, small: 0})
-
+    /*const [name, setName] = useState();
+    const [email, setEmail] = useState();*/
 
     useEffect(() => {
         const updateAvailRooms = () => {
@@ -79,7 +80,7 @@ const DuckNest = () => {
                             <button>Search</button>
                         </div>
                     </form>
-                    
+
                     <div>
                         {checkOutDate ? (
                             <div>
@@ -87,14 +88,14 @@ const DuckNest = () => {
                                     <span>Luxury: {availRooms.large}    |   </span>
                                     <span>Deluxe: {availRooms.medium}    |    </span>
                                     <span>Cozy: {availRooms.small}</span>
-                            
+
                             </div>
 
                         ) : <p>Select a date range to see availibility</p>}
-                    </div>  
+                    </div>
 
                 </div>
-                
+
             <div className={styles.contentWrapper}>
                 <div className={styles.box}>
                     <h2>Location</h2>
@@ -105,11 +106,17 @@ const DuckNest = () => {
                 </div>
 
                 <div className={styles.box}>
-                    <h2>Contact</h2>
+                    <h2>Contact Us</h2>
                     <div className={styles.contactInfo}>
                         {/* Add your contact information or placeholder here */}
-                        <p>+1-800-DUCKS</p>
-                        <p>contact@ducksnest.com</p>
+                        <form>
+                          <input name="name" placeholder="Name" type="text" />
+                          <input name="email" placeholder="Email" type="email"/>
+                          <textarea type="text" placeholder="Your Message"></textarea>
+                          <button type="button" class="btn">Send Message</button>
+                        </form>
+                        {/*<p>+1-800-DUCKS</p>
+                        <p>contact@ducksnest.com</p>*/}
                     </div>
                 </div>
             </div>
