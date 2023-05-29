@@ -71,8 +71,8 @@ const Reservation = () => {
                 </div>
 
                 <div className={styles.size}>
-                    <img src="/img/deluxe.jpg" alt="Logo" className={styles.img} />
                     <p>Room Deluxe | Family </p>
+                    <img src="/img/deluxe.jpg" alt="Logo" className={styles.img} />
                     <p>Discover the ultimate in comfort and sophistication within our deluxe room, 
                         thoughtfully designed to accommodate up to four guests. Step into a spacious
                         sanctuary adorned with stylish furnishings and contemporary touches, creating an 
@@ -99,14 +99,6 @@ const Reservation = () => {
                     <ResRoom size={"large"} checkInDate={checkInDate} checkOutDate={checkOutDate} />
                 </div>
             </div>
-
-            {/* <div className={styles.roomGrid} style={{display: "flex", gap: "30px"}}>
-                {[
-                    genRooms("large", availRooms.large),
-                    genRooms("medium", availRooms.medium),
-                    genRooms("small", availRooms.small)
-                ]}  
-            </div> */}
             
         </div>
     );

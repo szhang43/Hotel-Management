@@ -83,12 +83,11 @@ const DuckNest = () => {
                     <div>
                         {checkOutDate ? (
                             <div>
-                                Available Rooms:
-                                <ul>
-                                    <li>Large: {availRooms.large}</li>
-                                    <li>Medium: {availRooms.medium}</li>
-                                    <li>Small: {availRooms.small}</li>
-                                </ul>
+                                <h4>Available Rooms:</h4>
+                                    <span>Luxury: {availRooms.large}    |   </span>
+                                    <span>Deluxe: {availRooms.medium}    |    </span>
+                                    <span>Cozy: {availRooms.small}</span>
+                            
                             </div>
 
                         ) : <p>Select a date range to see availibility</p>}

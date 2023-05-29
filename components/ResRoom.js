@@ -1,7 +1,7 @@
 import React from 'react';
 import { bookRoomDB } from '@/firebase/firebaseUtils';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-
+import styles from '@/styles/reservation.module.css';
 
 const ResRoom = (props) => {
 
@@ -33,7 +33,7 @@ const ResRoom = (props) => {
     return (
         <div>
             {/* <h1>{props.size}</h1> */}
-            <button onClick={bookRoom}>Reserve</button>
+            <button className={styles.reserveButton} onClick={bookRoom}>Reserve Room</button>
         </div>
     )
 }
