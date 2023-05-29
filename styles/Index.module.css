@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 100px;
+  margin-bottom: 150px;
 }
 
 .background {
@@ -47,12 +48,12 @@
 /*------------------CHECK IN BOX------------------ */
 
 .formBox {
+  background-color: white;
   flex-basis: 10%;
   border: 1px solid #ccc;
-  background-color: white;
   padding: 20px;
   border-radius: 4px;
-  margin-top: -75px;
+  margin-top: -100px;
   margin-bottom: 100px;
 }
 
@@ -97,7 +98,6 @@
   background-color: rgb(10, 150, 10);
 }
 
-
 .label {
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
@@ -126,6 +126,7 @@
 }
 
 .box {
+  background-color: #f5f5f5;
   text-align: center;
   flex-basis: 45%;
   border: 1px solid #ccc;
@@ -150,31 +151,51 @@
 
 .contactInfo {
   /* Additional styles for contact info */
-  width: 230px;
+  width: 260px;
 }
 
-.contactInfo input{
-  width: 169px;
-  margin-left: 27px;
-  margin-right: 27px;
-  margin-bottom: 2px;
-  display: flex;
+.description {
+  font-family: 'Roboto', sans-serif;
+  color: #666;
+  font-size: 14px;
+  margin-top: -20px;
+  margin-bottom: 30px;
 }
 
-.contactInfo textarea{
-  padding: 2px;
-  resize: none;
-  width: 171px;
-  height: 200px;
-}
-
-.contactInfo button{
-  width: 171px;
+.contactInfo input,
+.contactInfo textarea {
+  border: 1px solid #ccc;
+  width: 100%;
   padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  font-size: 14px; /* Adjust the font size */
+}
+
+.contactInfo .formRow {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.contactInfo .formRow input {
+  flex: 1;
+  margin-right: 5px;
+}
+
+.contactInfo button {
+  width: 100%;
+  background-color: green;
+  padding: 12px;
   margin-top: 12px;
-  background-color: #5c5b5b;
   color: #ffffff;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
+  border-radius: 4px;
+  font-family: 'Playfair Display', serif;
+  cursor: pointer;
+  font-size: 15px; /* Adjust the font size */
+}
+
+.searchButton:hover {
+  background-color: rgb(10, 150, 10);
 }
