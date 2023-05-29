@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { createUserWithEmailAndPassword, updateProfile, updatePhoneNumber, } from "firebase/auth";
 import { auth } from "@/firebase/initFirebase";
 import { writeUserDB } from "@/firebase/firebaseUtils";
+import styles from '@/styles/Login.module.css';
+
 
 function RegisterForm() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -81,7 +83,7 @@ function RegisterForm() {
     }
 
   return (
-    <div>
+    <div className={styles.formContainer}>
       <h3>Register User</h3>
       <input
         placeholder="First Name"
@@ -108,7 +110,7 @@ function RegisterForm() {
         onChange={(event) => setRegisterPassword(event.target.value)}
       />
 
-      <button onClick={register}>Create Account</button>
+      <button className={styles.button} onClick={register}>Create Account</button>
     </div>
   );
 }

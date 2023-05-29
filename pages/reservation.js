@@ -49,13 +49,13 @@ const Reservation = () => {
             Arrival Date: {checkInDate} <br />  Departure Date: {checkOutDate}</p>
 
             {/* These can be deleted unless we want to keep them */}
-            <p>Available Large Rooms: {availRooms.large}</p>
+            {/* <p>Available Large Rooms: {availRooms.large}</p>
             <p>Available Medium Rooms: {availRooms.medium}</p>
-            <p>Available Small Rooms: {availRooms.small}</p>
+            <p>Available Small Rooms: {availRooms.small}</p> */}
 
             <div className={styles.roomContainer}>
                 <div className={styles.size}>
-                    <p>The Cozy | Singles</p>
+                    <h1>The Cozy | Singles</h1>
                     <img src="/img/cozy.jpg" alt="Logo" className={styles.img} />
                     <p>Description:</p>
                     <p>Welcome to our deluxe room, designed to provide a comfortable and enjoyable 
@@ -71,7 +71,7 @@ const Reservation = () => {
                 </div>
 
                 <div className={styles.size}>
-                    <p>Room Deluxe | Family </p>
+                    <h1>Room Deluxe | Family </h1>
                     <img src="/img/deluxe.jpg" alt="Logo" className={styles.img} />
                     <p>Discover the ultimate in comfort and sophistication within our deluxe room, 
                         thoughtfully designed to accommodate up to four guests. Step into a spacious
@@ -87,7 +87,7 @@ const Reservation = () => {
                 </div>
 
                 <div className={styles.size}>
-                    <p>Luxury | Group</p>
+                    <h1>Luxury | Group</h1>
                     <img src="/img/luxury.jpg" alt="Logo" className={styles.img} />
                     <p>Experience pure luxury in our exquisite room, where elegance meets comfort. Enjoy a king-sized 
                         bed adorned with plush linens for a restful sleep. The spacious en-suite bathroom features marble 

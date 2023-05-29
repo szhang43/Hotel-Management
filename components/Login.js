@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase/initFirebase";
+import styles from '@/styles/Login.module.css';
+
 
 function LoginForm() {
   const [loginEmail, setLoginEmail] = useState("");
@@ -15,7 +17,7 @@ function LoginForm() {
   }
 
   return (
-    <div>
+    <div className={styles.formContainer}>
       <h3>Login</h3>
       <input
         placeholder="Email"
@@ -26,7 +28,7 @@ function LoginForm() {
         placeholder="Password"
         onChange={(event) => setLoginPassword(event.target.value)}
       />
-      <button onClick={login}>Login</button>
+      <button className={styles.button} onClick={login}>Login</button>
     </div>
   );
 }

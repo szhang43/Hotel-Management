@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "@/firebase/initFirebase";
+import styles from '@/styles/Login.module.css';
+
 
 function ForgotPasswordForm() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -15,13 +17,13 @@ function ForgotPasswordForm() {
   }
 
   return (
-    <div>
+    <div className={styles.formContainer}>
       <h3>Forgot Password</h3>
       <input
         placeholder="Email"
         onChange={(event) => setRegisterEmail(event.target.value)}
       />
-      <button onClick={forgotPass}>Reset Password</button>
+      <button className={styles.button} onClick={forgotPass}>Reset Password</button>
     </div>
   );
 }
