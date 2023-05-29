@@ -47,6 +47,7 @@ const DuckNest = () => {
 
 
     return (
+        <div className={styles.gradient}>
             <div className={styles.container}>
             <div className={styles.background}>
                 <h1 className={styles.title}>The Duck&apos;s Nest</h1>
@@ -131,6 +132,7 @@ const DuckNest = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 };
