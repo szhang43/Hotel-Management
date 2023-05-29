@@ -28,7 +28,7 @@ const ResRoom = (props) => {
             bookRoomDB(userData, resData)
             .then(() => {
                 // alert("Room Booked!");
-                router.push("/ReservationBooked")
+                router.push("/ResSuccess")
                 
             })
         }

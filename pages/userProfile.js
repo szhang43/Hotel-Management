@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/firebase/initFirebase"; 
 import Reservation from "@/components/ReservationFetch";
+import styles from '@/styles/about.module.css';
 
 function UserProfile(){
     const [user, setUser] = useState("");
@@ -14,7 +15,7 @@ function UserProfile(){
     }, []);
 
     return (
-        <div className = "userProfile">
+        <div className = {styles.userProfile}>
             {user ? (
                 <div>
                     <h3>Welcome, {user.displayName}!</h3>
@@ -26,7 +27,7 @@ function UserProfile(){
 
                     <h4>Reservations</h4>
                     <Reservation/>
-                    <button onClick={(event) => signOut(auth)}>Sign out</button>
+                    <button className={styles.signout} onClick={(event) => signOut(auth)}>Sign out</button>
                 </div>
                 
             ) : (

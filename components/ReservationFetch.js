@@ -3,6 +3,7 @@ import { auth, db } from "@/firebase/initFirebase"; // Assuming you have initial
 import {collection, query, where, getDocs } from "firebase/firestore";
 import { deleteResDB } from "@/firebase/firebaseUtils";
 import Router from "next/router";
+import styles from "@/styles/profile.module.css"
 
 function Reservation() {
   const [reservations, setReservations] = useState([]);
@@ -42,9 +43,9 @@ function Reservation() {
   return (
     <div>
       {reservations.length > 0 ? (
-        <ul>
+        <ul >
           {reservations.map((reservation) => (
-            <li key={reservation.id}>
+            <li key={reservation.id} className={styles.reservationBox}>
               <p>Reservation ID: {reservation.resId}</p>
               <p>Status: {reservation.status}</p>
               <p>Room Size: {reservation.roomSize}</p> 

@@ -1,0 +1,27 @@
+.userProfile {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .signout {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .signout:hover {
+    background-color: #0056b3;
+  }
+  
+
+  .reservationBox {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    list-style-type: none;
+  }
+  

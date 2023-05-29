@@ -5,7 +5,7 @@ import Link from "next/link";
 import RegisterForm from "@/components/Register";
 import LoginForm from "@/components/Login";
 import ForgotPasswordForm from "@/components/ForgotPass";
-import styles from '@/styles/Login.module.css';
+
 
 
 function Login() {
