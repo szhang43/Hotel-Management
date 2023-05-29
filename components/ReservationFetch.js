@@ -51,7 +51,7 @@ function Reservation() {
               <p>Room Size: {reservation.roomSize}</p> 
               <p>Check In: {reservation.bookedFrom}</p>
               <p>Check Out: {reservation.bookedTo}</p>
-              <button onClick={() => {cancelRes(reservation.resId)}}>Cancel Reservation</button>
+              <button className={styles.cancle} onClick={() => {cancelRes(reservation.resId)}}>Cancel Reservation</button>
               {/* Display other reservation information as needed */}
             </li>
           ))}

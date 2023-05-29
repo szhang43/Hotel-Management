@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/firebase/initFirebase"; 
 import Reservation from "@/components/ReservationFetch";
-import styles from '@/styles/about.module.css';
+import styles from '@/styles/profile.module.css';
 
 function UserProfile(){
     const [user, setUser] = useState("");
@@ -20,8 +20,8 @@ function UserProfile(){
                 <div>
                     <h3>Welcome, {user.displayName}!</h3>
                     <h4>Profile</h4>
-                    <p>First Name: {user.displayName.split(" ")[0]}</p>
-                    <p>Last Name: {user.displayName.split(" ")[1]}</p>
+                    <span>First Name: {user.displayName.split(" ")[0]}</span>
+                    <span>Last Name: {user.displayName.split(" ")[1]}</span>
                     <p>Email: {user.email}</p>
                     <p>Phone Number: {user.phoneNumber}</p>
 
