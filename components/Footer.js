@@ -3,12 +3,11 @@ import styles from '../styles/footer.module.css';
 
 const Footer = () => {
   return (
-    <box>
-      <h1 style={{textAlign: "center",
-                  marginTop: "-50px"}}>
+    <div className={styles.container}>
+      <h1 className={styles.footer__header}>
         Ducks Nest: A Hotel Management System
       </h1>
-    </box>
+    </div>
   );
 };
 export default Footer;
