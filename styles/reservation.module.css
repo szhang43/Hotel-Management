@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
 
+.gradient {
+    background-image: radial-gradient( circle farthest-corner at 10% 30%,  rgba(226,240,254,1) 0%, rgba(255,247,228,1) 90% );
+}
+
 .background {
   display: flex;
   flex-direction: column;

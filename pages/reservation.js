@@ -34,6 +34,7 @@ const Reservation = () => {
 
     return (
         <div>
+          <div className={styles.gradient}> 
           <div className={styles.background}>
             <div className={styles.reservationTitle}>
               <h1>Reservations</h1> {/* Move the "Reservations" heading into the background */}
@@ -134,6 +135,7 @@ const Reservation = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>
       );
     };
