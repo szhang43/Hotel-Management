@@ -2,13 +2,16 @@ import React from 'react';
 import { bookRoomDB } from '@/firebase/firebaseUtils';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import styles from '@/styles/reservation.module.css';
+import { useRouter } from 'next/router';
+import ReservationBooked from './ResSuccess';
 
 const ResRoom = (props) => {
-
+    const router = useRouter();
     const bookRoom = () => {
-        console.log('test');
         const auth = getAuth();
-        onAuthStateChanged(auth, (user) => {
+        const user = auth.currentUser;
+        // onAuthStateChanged(auth, (user) => {
+        if(user){
             const nameArr = user.displayName.split(" ");
 
             const userData = {
@@ -24,9 +27,14 @@ const ResRoom = (props) => {
 
             bookRoomDB(userData, resData)
             .then(() => {
-                alert("Room Booked!");
+                // alert("Room Booked!");
+                router.push("/ReservationBooked")
+                
             })
-        })
+        }
+        else{
+            alert("Please login first!");
+        }
     }
 
 
@@ -37,5 +45,6 @@ const ResRoom = (props) => {
         </div>
     )
 }
+
 
 export default ResRoom
