@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;400&family=Playfair+Display:wght@500&display=swap');
+
+.gradient {
+  background-image: linear-gradient( 45.5deg,  rgba(137,169,158,1) 4.7%, rgba(165,190,169,1) 45.3%, rgba(242,242,242,1) 94.6% );
+  padding-bottom: 5%;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 100px;
+  margin-bottom: 150px;
 }
 
 .background {
@@ -14,7 +21,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  margin-top: -80px;
+  margin-top: 0 auto;
   height: 50vh;
   width: 80%;
 }
@@ -23,8 +30,8 @@
 .title {
   text-align: center;
   font-family: 'Playfair Display', serif;
-  font-size: 45px;
-  margin-top: 12rem;
+  font-size: 70px;
+  margin-top: 10rem;
   color: white;
   text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.1), 1px -1px 2px rgba(0, 0, 0, 0.1),
    -1px 1px 2px rgba(0, 0, 0, 0.1), 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -33,10 +40,10 @@
 
 .slogan {
   text-align: center;
-  margin-top: -1rem;
+  margin-top: -3rem;
   margin-bottom: 10rem;
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
+  font-family: 'Jost', sans-serif;
+  font-size: 25px;
   color:white;
   text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.1), 1px -1px 2px rgba(0, 0, 0, 0.1),
    -1px 1px 2px rgba(0, 0, 0, 0.1), 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -47,13 +54,16 @@
 /*------------------CHECK IN BOX------------------ */
 
 .formBox {
+  background-color: white;
   flex-basis: 10%;
   border: 1px solid #ccc;
-  background-color: white;
   padding: 20px;
   border-radius: 4px;
-  margin-top: -75px;
+  margin-top: 80px;
   margin-bottom: 100px;
+  font-family: 'Jost', sans-serif;
+  font-size: 18px;
+  
 }
 
 .form {
@@ -97,9 +107,8 @@
   background-color: rgb(10, 150, 10);
 }
 
-
 .label {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Jost', sans-serif;
   font-size: 18px;
   margin-bottom: 10px;
 }
@@ -126,6 +135,7 @@
 }
 
 .box {
+  background-color: #f5f5f5;
   text-align: center;
   flex-basis: 45%;
   border: 1px solid #ccc;
@@ -143,8 +153,57 @@
 
 .locationInfo {
   /* Additional styles for location info */
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
 }
 
 .contactInfo {
   /* Additional styles for contact info */
+  width: 260px;
+}
+
+.description {
+  font-family: 'Jost', sans-serif;
+  color: #666;
+  font-size: 14px;
+  margin-top: -20px;
+  margin-bottom: 30px;
+}
+
+.contactInfo input,
+.contactInfo textarea {
+  border: 1px solid #ccc;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  font-size: 14px; /* Adjust the font size */
+}
+
+.contactInfo .formRow {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.contactInfo .formRow input {
+  flex: 1;
+  margin-right: 5px;
+}
+
+.contactInfo button {
+  width: 100%;
+  background-color: green;
+  padding: 12px;
+  margin-top: 12px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'Playfair Display', serif;
+  cursor: pointer;
+  font-size: 15px; /* Adjust the font size */
+}
+
+.searchButton:hover {
+  background-color: rgb(10, 150, 10);
 }
