@@ -37,7 +37,7 @@ const Reservation = () => {
             <h1>Reservations</h1>
 
             <div className={styles.text}>
-            <p> We&apos;re delighted to help you find the perfect room and making your stay at our hotel a delightful experience. 
+            <p> We&apos;re delighted to help you find the perfect room and making your stay at our hotel a delightful experience.
                 Whether you&apos;re seeking a cozy nest for a solo adventure<br />
                 or a spacious haven for a family getaway, we have just the right room waiting for you.<br />
                 Take your time, explore our options, and imagine the tranquil ambiance and stunning views that await.
@@ -57,9 +57,8 @@ const Reservation = () => {
                 <div className={styles.size}>
                     <h1>The Cozy | Singles</h1>
                     <img src="/img/cozy.jpg" alt="Logo" className={styles.img} />
-                    <p>Description:</p>
-                    <p>Welcome to our deluxe room, designed to provide a comfortable and enjoyable 
-                        stay for one or two guests. Relax in a cozy queen-sized bed and appreciate the 
+                    <p>Welcome to our cozy room, designed to provide a comfortable and enjoyable
+                        stay for one or two guests. Relax in a cozy queen-sized bed and appreciate the
                         tasteful furnishings that create a soothing atmosphere. The en-suite bathroom
                         offers convenience with modern amenities, including a rain shower and a deep
                         soaking tub. Enjoy the pleasant ambiance of this well-appointed room, where 
@@ -73,12 +72,12 @@ const Reservation = () => {
                 <div className={styles.size}>
                     <h1>Room Deluxe | Family </h1>
                     <img src="/img/deluxe.jpg" alt="Logo" className={styles.img} />
-                    <p>Discover the ultimate in comfort and sophistication within our deluxe room, 
+                    <p>Discover the ultimate in comfort and sophistication within our deluxe room,
                         thoughtfully designed to accommodate up to four guests. Step into a spacious
-                        sanctuary adorned with stylish furnishings and contemporary touches, creating an 
-                        atmosphere of relaxation and indulgence. Sink into the plush beds and relish the 
-                        ample space available for your entire group to unwind and rejuvenate. With its inviting 
-                        ambiance and attention to detail, this exquisite retreat promises a memorable stay where 
+                        sanctuary adorned with stylish furnishings and contemporary touches, creating an
+                        atmosphere of relaxation and indulgence. Sink into the plush beds and relish the
+                        ample space available for your entire group to unwind and rejuvenate. With its inviting
+                        ambiance and attention to detail, this exquisite retreat promises a memorable stay where
                         comfort and elegance intertwine harmoniously.
                     </p>
                     <p>Rooms Available: {availRooms.medium}</p>
@@ -89,9 +88,9 @@ const Reservation = () => {
                 <div className={styles.size}>
                     <h1>Luxury | Group</h1>
                     <img src="/img/luxury.jpg" alt="Logo" className={styles.img} />
-                    <p>Experience pure luxury in our exquisite room, where elegance meets comfort. Enjoy a king-sized 
-                        bed adorned with plush linens for a restful sleep. The spacious en-suite bathroom features marble 
-                        accents and indulgent amenities. Immerse yourself in the opulent ambiance of our luxury room and 
+                    <p>Experience pure luxury in our exquisite room, where elegance meets comfort. Enjoy a king-sized
+                        bed adorned with plush linens for a restful sleep. The spacious en-suite bathroom features marble
+                        accents and indulgent amenities. Immerse yourself in the opulent ambiance of our luxury room and
                         indulge in an unforgettable stay.
                     </p>
                     <p>Rooms Available: {availRooms.large}</p>
@@ -99,7 +98,7 @@ const Reservation = () => {
                     <ResRoom size={"large"} checkInDate={checkInDate} checkOutDate={checkOutDate} />
                 </div>
             </div>
-            
+
         </div>
     );
 };
