@@ -32,39 +32,38 @@ const Reservation = () => {
     }
 
 
-      
     return (
-        <div>
-          <div className={styles.gradient}> 
-          <div className={styles.background}>
+      <div>
+        <div className={styles.background}>
             <div className={styles.reservationTitle}>
               <h1>Reservations</h1> {/* Move the "Reservations" heading into the background */}
             </div>
-          </div>
-      
-          <div className={styles.container}>
-            <div className={styles.text}>
-              <p>
-                We&apos;re delighted to help you find the perfect room and making your
-                stay at our hotel a delightful experience. Whether you&apos;re seeking a
-                cozy nest for a solo adventure
+            <div className={styles.dateInfo}>
+              <p className={styles.dates}>
+                You selected the following dates for your stay:
                 <br />
-                or a spacious haven for a family getaway, we have just the right room
-                waiting for you.
-                <br />
-                Take your time, explore our options, and imagine the tranquil ambiance
-                and stunning views that await. Go ahead and find the room that speaks to
-                your heart,
-                <br />
-                and let us create wonderful memories during your stay at Duck&apos;s Nest.
+                Check In: {checkInDate} <br /> Check Out: {checkOutDate}
               </p>
             </div>
+        </div>
     
-            <p className={styles.dates}>
-              You selected the following dates for your stay:
+        <div className={styles.container}>
+          <div className={styles.text}>
+            <p>
+              We&apos;re delighted to help you find the perfect room and making your
+              stay at our hotel a delightful experience. Whether you&apos;re seeking a
+              cozy nest for a solo adventure
               <br />
-              Arrival Date: {checkInDate} <br /> Departure Date: {checkOutDate}
+              or a spacious haven for a family getaway, we have just the right room
+              waiting for you.
+              <br />
+              Take your time, explore our options, and imagine the tranquil ambiance
+              and stunning views that await. Go ahead and find the room that speaks to
+              your heart,
+              <br />
+              and let us create wonderful memories during your stay at Duck&apos;s Nest.
             </p>
+          </div>
     
             {/* These can be deleted unless we want to keep them */}
             {/* <p>Available Large Rooms: {availRooms.large}</p>
@@ -136,7 +135,6 @@ const Reservation = () => {
               </div>
             </div>
           </div>
-        </div>
         </div>
       );
     };
