@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
 
-.gradient {
-    background-image: radial-gradient( circle farthest-corner at 10% 30%,  rgba(226,240,254,1) 0%, rgba(255,247,228,1) 90% );
-}
-
 .background {
   display: flex;
   flex-direction: column;
@@ -15,7 +11,7 @@
   background-repeat: no-repeat;
   background-size: 80% auto; /* Set the width to 80% and maintain the aspect ratio */
   margin-top: 0;
-  height: 30vh;
+  height: 50vh;
   width: 100%;
 }
 
@@ -32,6 +28,7 @@
   font-size: 20px;
 }
 
+/*------------------Box Containers------------------ */
 .container h1 {
     font-family: 'Playfair Display', serif;
     font-size: 2vw;
@@ -66,19 +63,34 @@
   
 
   
-  .text {
+.text {
     margin-bottom: 20px;
   }
   
-  .dates {
+.dates {
     margin-bottom: 20px;
   }
+
+  .dateInfo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 0px 50px;
+  }
   
-  .roomContainer {
+.roomContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-  }
+}
   
 .size {
   background-color: #f9f9f9;
@@ -88,24 +100,26 @@
   margin-bottom: 20px;
 }
   
-  .img {
+.img {
     width: 100%;
     max-height: 200px;
     object-fit: cover;
     border-radius: 4px;
     margin-bottom: 10px;
-  }
+}
   
   
-  .price {
+.price {
     font-weight: bold;
-  }
+}
   
 .roomContainer {
   display: block;
   margin-top: 20px;
 }
   
+
+
   .smallRooms {
     display: flex;
     gap: 10px;
