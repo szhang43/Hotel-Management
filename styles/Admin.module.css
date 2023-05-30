@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
 
+.adminBack {
+  background-image: linear-gradient( 359.8deg,  rgba(207,217,223,1) 3.9%, rgba(226,235,240,1) 94% );
+  padding-bottom: 5%;
+}
+
 .container {
   text-align: center;
   display: flex;
@@ -11,6 +16,7 @@
   padding: 20px;
   /* background-color: #f5f5f5; */
   border: 1px solid #ccc;
+  background-color: white;
   border-radius: 4px;
   font-family: 'Jost', sans-serif;
 }
@@ -44,7 +50,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Playfair Display', serif;
 
 }
 
