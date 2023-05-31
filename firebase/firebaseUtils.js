@@ -150,6 +150,14 @@ const listAllResDB = async () => {
 }
 
 
+const getRoomPricesDB = async () => {
+    const dbSnap = await getDoc(doc(db, "HTM2", "Hotel Info"));
+    let roomPrices = dbSnap.get("Room Price")
+    
+    return roomPrices
+}
+
+
 
 export {
     getAvailRoomsDB,
@@ -159,4 +167,5 @@ export {
     listAllResDB,
     getAllProfileDB,
     getAllCustDB,
+    getRoomPricesDB
 }

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { db } from '@/firebase/initFirebase'
 import { doc, getDoc, updateDoc } from "firebase/firestore"
-import { getAllProfileDB, listAllResDB, getAllCustDB } from '@/firebase/firebaseUtils';
+import { getAllProfileDB, listAllResDB, getAllCustDB, getRoomPricesDB } from '@/firebase/firebaseUtils';
 
 
 const DBtest = () => {
@@ -20,6 +20,11 @@ const DBtest = () => {
     const listAllCustIds = async () => {
         setAllCustIds(await getAllCustDB())
     }
+
+    const getRoomPrices = async () => {
+        getRoomPricesDB()
+    }
+
 
     return (
         <div>
@@ -45,6 +50,8 @@ const DBtest = () => {
                     <li key={cust.customerId}>First Name: {cust.fName} <br></br> Last Name: {cust.lName} <br></br> ID: {cust.customerId}</li>
                 ))
             }</ul>
+
+            <button onClick={getRoomPrices}>get prices</button>
 
         </div>
     );
