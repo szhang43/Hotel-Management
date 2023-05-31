@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '@/styles/Admin.module.css';
 import ChangeNumRooms from '@/components/ChangeNumRooms.js';
+import ChangeRoomPrice from '@/components/ChangeRoomPrice';
 
 const Admin = () => {
 
@@ -9,6 +10,7 @@ const Admin = () => {
     <div>
       <div className={styles.adminBack}>
         <ChangeNumRooms/>
+        <ChangeRoomPrice/>
 
       </div>
     </div>
