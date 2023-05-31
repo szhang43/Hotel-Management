@@ -57,6 +57,13 @@ const getAvailRoomsDB = async (checkInDate, checkOutDate) => {
 
 }
 
+const getTotalRoomsDB = async () => {
+    const locArr = ["HTM2", "Hotel Info"]
+    return await readDB(locArr).then((data) => {
+        return {large: data["Room Inventory"].large, medium: data["Room Inventory"].medium, small: data["Room Inventory"].small}
+    })
+}
+
 
 const writeUserDB = async (userData) => {
     // console.log(userData);
@@ -221,6 +228,7 @@ const removeMaintenanceDB = async (maintId) => {
 
 export {
     getAvailRoomsDB,
+    getTotalRoomsDB,
     writeUserDB,
     bookRoomDB,
     deleteResDB,

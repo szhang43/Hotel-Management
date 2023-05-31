@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAvailRoomsDB, setNumRoomDB } from '@/firebase/firebaseUtils';
+import { getAvailRoomsDB, setNumRoomDB, getTotalRoomsDB } from '@/firebase/firebaseUtils';
 import styles from '@/styles/Admin.module.css';
 
 
@@ -9,8 +9,8 @@ const ChangeNumRooms = (props) => {
     const [size, setSize] = useState("");
     const [input, setInput] = useState("");
 
-    const updateAvailRooms = () => {
-        getAvailRoomsDB(null, null)
+    const updateTotalRooms = () => {
+        getTotalRoomsDB()
         .then((data) => {
             console.log(data)
             setAvailRooms(data)
@@ -18,7 +18,7 @@ const ChangeNumRooms = (props) => {
     }
 
     useEffect(() => {
-        updateAvailRooms()
+        updateTotalRooms()
     }, [])
 
 
@@ -37,7 +37,7 @@ const ChangeNumRooms = (props) => {
 
         setNumRoomDB(size, num)
         .then(() => {
-            updateAvailRooms()
+            updateTotalRooms()
 
         })
     }
