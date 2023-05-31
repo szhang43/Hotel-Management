@@ -24,27 +24,34 @@ const getAvailRoomsDB = async (checkInDate, checkOutDate) => {
     let totalRooms = await readDB(locArr).then((data) => {
         return {large: data["Room Inventory"].large, medium: data["Room Inventory"].medium, small: data["Room Inventory"].small}
     })
-    console.log(totalRooms);
+    const custIn = new Date(checkInDate)
+    const custOut = new Date(checkOutDate)
 
     const querySnapshot = await getDocs(collection(db, "HTM2", "Hotel Info", "Reservations"));
     querySnapshot.forEach((doc) => {
+        const roomIn = new Date(doc.data().bookedFrom)
+        const roomOut = new Date(doc.data().bookedTo)
         if (
             // check in date between bookedFrom and bookedTo
-            new Date(checkInDate) < new Date(doc.data().bookedTo) &&
-            new Date(checkInDate) >= new Date(doc.data().bookedFrom) || 
+            custIn < roomOut &&
+            custIn >= roomIn || 
             // check out date between bookedFrom and bookedTo
-            new Date(checkOutDate) > new Date(doc.data().bookedFrom) &&
-            new Date(checkOutDate) <= new Date(doc.data().bookedTo) ||
+            custOut > roomIn &&
+            custOut <= roomOut ||
 
-            new Date(checkInDate) <= new Date(doc.data().bookedFrom) &&
-            new Date(checkOutDate) >= new Date(doc.data().bookedTo)
+            custIn <= roomIn &&
+            custOut >= roomOut
 
             ){
                 totalRooms[doc.data().roomSize] -= 1
         }
     })
 
-    // TODO: check rooms for maintenance
+    // Remove rooms that need maintenance
+    const maintSnapshot = await getDocs(collection(db, "HTM2", "Hotel Info", "Work Order"));
+    maintSnapshot.forEach((doc) => {
+        totalRooms[doc.data().roomSize] -= 1
+    })
 
     return totalRooms
 
@@ -177,6 +184,39 @@ const setRoomPriceDB = async (roomSize, price) => {
     await updateDoc(doc(db, "HTM2", "Hotel Info"), {"Room Price": prices})
 }
 
+const addMaintenanceDB = async (roomSize, roomId, mReason) => {
+    const dateToday = new Date().toLocaleDateString('fr-ca')
+
+    const docRef = await addDoc(collection(db, "HTM2", "Hotel Info", "Work Order"), {
+        roomSize: roomSize,
+        roomId: roomId,
+        description: mReason,
+        date: dateToday,
+    })
+
+    await updateDoc(doc(db, "HTM2", "Hotel Info", "Work Order", docRef.id), {maintId: docRef.id})
+}
+
+const getMaintenanceDB = async () => {
+    let allMaintenance = []
+
+    const mSnap = await getDocs(collection(db, "HTM2", "Hotel Info", "Work Order"));
+    mSnap.forEach((doc) => {
+        allMaintenance.push(doc.data())
+    })
+
+    return allMaintenance
+}
+
+const removeMaintenanceDB = async (maintId) => {
+    const docSnap = await getDoc(doc(db, "HTM2", "Hotel Info", "Work Order", maintId))
+    if(docSnap.exists()){
+        await deleteDoc(doc(db, "HTM2", "Hotel Info", "Work Order", maintId));
+    } else {
+        console.log("Maintenance doc does not exist");
+    }
+}
+
 
 
 export {
@@ -189,5 +229,8 @@ export {
     getAllCustDB,
     getRoomPricesDB,
     setNumRoomDB,
-    setRoomPriceDB
+    setRoomPriceDB,
+    addMaintenanceDB,
+    getMaintenanceDB,
+    removeMaintenanceDB
 }
