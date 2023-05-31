@@ -34,7 +34,11 @@ const getAvailRoomsDB = async (checkInDate, checkOutDate) => {
             new Date(checkInDate) >= new Date(doc.data().bookedFrom) || 
             // check out date between bookedFrom and bookedTo
             new Date(checkOutDate) > new Date(doc.data().bookedFrom) &&
-            new Date(checkOutDate) <= new Date(doc.data().bookedTo)
+            new Date(checkOutDate) <= new Date(doc.data().bookedTo) ||
+
+            new Date(checkInDate) <= new Date(doc.data().bookedFrom) &&
+            new Date(checkOutDate) >= new Date(doc.data().bookedTo)
+
             ){
                 totalRooms[doc.data().roomSize] -= 1
         }
