@@ -1,14 +1,15 @@
 import React from 'react';
-import AddForm from '../components/AddInventory.js';
-import RemoveForm from '../components/RemoveInventory.js';
 import styles from '@/styles/Admin.module.css';
+import ChangeNumRooms from '@/components/ChangeNumRooms.js';
 
 const Admin = () => {
+
+
   return (
     <div>
       <div className={styles.adminBack}>
-        <AddForm />
-        <RemoveForm />
+        <ChangeNumRooms/>
+
       </div>
     </div>
   );

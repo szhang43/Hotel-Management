@@ -157,6 +157,14 @@ const getRoomPricesDB = async () => {
     return roomPrices
 }
 
+const setNumRoomDB = async (roomSize, numRooms) => {
+    const docSnap = await getDoc(doc(db, "HTM2", "Hotel Info"))
+    let sizes = docSnap.data()["Room Inventory"]
+    console.log(sizes);
+    sizes[roomSize] += Number.parseInt(numRooms)
+    await updateDoc(doc(db, "HTM2", "Hotel Info"), {"Room Inventory": sizes})
+}
+
 
 
 export {
@@ -167,5 +175,6 @@ export {
     listAllResDB,
     getAllProfileDB,
     getAllCustDB,
-    getRoomPricesDB
+    getRoomPricesDB,
+    setNumRoomDB
 }
