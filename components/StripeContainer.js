@@ -16,4 +16,4 @@ function StripeContainer(){
     )
 }
 
-export default StripeContainer
+export default StripeContainer;
