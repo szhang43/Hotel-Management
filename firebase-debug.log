@@ -1,0 +1,14 @@
+[debug] [2023-05-30T12:45:43.739Z] ----------------------------------------------------------------------
+[debug] [2023-05-30T12:45:43.741Z] Command:       /home/sophie/.nvm/versions/node/v18.16.0/bin/node /home/sophie/.nvm/versions/node/v18.16.0/bin/firebase deploy
+[debug] [2023-05-30T12:45:43.741Z] CLI Version:   12.2.1
+[debug] [2023-05-30T12:45:43.742Z] Platform:      linux
+[debug] [2023-05-30T12:45:43.742Z] Node Version:  v18.16.0
+[debug] [2023-05-30T12:45:43.742Z] Time:          Tue May 30 2023 05:45:43 GMT-0700 (Pacific Daylight Time)
+[debug] [2023-05-30T12:45:43.743Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-05-30T12:45:43.816Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-05-30T12:45:43.816Z] > authorizing via signed-in user (night.sofia@yahoo.com)
+[debug] [2023-05-30T12:45:43.817Z] [iam] checking project hotel-management-25295 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-05-30T12:45:43.818Z] > refreshing access token with scopes: []
+[debug] [2023-05-30T12:45:43.820Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-05-30T12:45:43.820Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]

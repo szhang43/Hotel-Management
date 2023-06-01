@@ -3,10 +3,12 @@ import styles from '@/styles/Index.module.css';
 import Map from '@/components/Map';
 import { useRouter } from 'next/router';
 import { getAvailRoomsDB } from '@/firebase/firebaseUtils';
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 
 const DuckNest = () => {
     const router = useRouter();
+    const auth = getAuth();
     const address = '1585 East 13th Avenue, Eugene, OR';
 
     const dateToday = new Date().toLocaleDateString('fr-ca')
@@ -31,12 +33,18 @@ const DuckNest = () => {
 
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        router.push({
-            pathname: "/reservation",
-            query: {checkInDate: checkInDate, checkOutDate: checkOutDate}
-        });
-    }
+        e.preventDefault(); // Prevent form submission and page reload
+        const user = auth.currentUser;
+        if (!user) {
+            router.push("/login");
+        } else {
+            router.push({
+                pathname: '/reservation',
+                query: { checkInDate: checkInDate, checkOutDate: checkOutDate }
+            });
+        }
+    };
+    
 
     // adds 1 day to given date
     const incrDate = (date) => {

@@ -3,7 +3,6 @@ import React from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import styles from '@/styles/reservation.module.css';
 import { useRouter } from 'next/router';
-import ReservationBooked from '../pages/ResSuccess';
 
 const ResRoom = (props) => {
     const router = useRouter();

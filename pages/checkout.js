@@ -2,9 +2,9 @@ import {useEffect, useState} from "react";
 import Link from 'next/link';
 import styles from "@/styles/checkout.module.css"
 import { useRouter } from 'next/router';
-import ResRoom from '@/components/ResRoom';
 import { bookRoomDB } from '@/firebase/firebaseUtils';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import StripeContainer from "@/components/StripeContainer";
 
 
 function Checkout(){
@@ -87,7 +87,7 @@ function Checkout(){
             <p>Expiration Date</p>
             <input 
                 placeholder="Expiration Date" />
-            
+            <StripeContainer />
 
             <button onClick={bookRoom}>Confirm</button>
         </div>
