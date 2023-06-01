@@ -74,19 +74,7 @@ function Checkout(){
             <p>Last Name</p>
             <input 
                 placeholder="Last Name" />
-            
-            <p>Card Number</p>
-            <input  
-                placeholder="Card Number" />
-            
-            <p>Security Code</p>
-            <input 
-                type="password"
-                placeholder="CVC"/>
-            
-            <p>Expiration Date</p>
-            <input 
-                placeholder="Expiration Date" />
+ 
             <StripeContainer />
 
             <button onClick={bookRoom}>Confirm</button>
