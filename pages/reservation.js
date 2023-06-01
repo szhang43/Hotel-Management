@@ -3,33 +3,33 @@ import { useRouter } from 'next/router';
 import ResRoom from '@/components/ResRoom';
 import styles from '@/styles/reservation.module.css';
 import { useState, useEffect } from 'react';
-import { getAvailRoomsDB } from '@/firebase/firebaseUtils';
+import { getAvailRoomsDB, getRoomPricesDB } from '@/firebase/firebaseUtils';
 
 
 const Reservation = () => {
-    useEffect(() => {
-        updateAvailRooms()
-    }, [])
-
     const router = useRouter();
     const {checkInDate, checkOutDate} = router.query;
     const [availRooms, setAvailRooms] = useState({large: 0, medium: 0, small: 0})
+    const [roomPrices, setRoomPrices] = useState({large: 0, medium: 0, small: 0})
 
-    const updateAvailRooms = () => {
-        getAvailRoomsDB(checkInDate, checkOutDate)
-        .then((data) => {
-            console.log(data)
-            setAvailRooms(data)
-        })
-    }
 
-    const genRooms = (roomSize, numRooms) => {
-        let rooms = []
-        for(let i = 0; i < numRooms; i++){
-            rooms.push(<ResRoom size={roomSize} checkInDate={checkInDate} checkOutDate={checkOutDate} />)
+    useEffect(() => {
+        const updateRoomInfo = () => {
+            // set dates
+            getAvailRoomsDB(checkInDate, checkOutDate)
+            .then((data) => {
+                setAvailRooms(data)
+            })
+
+            // set prices
+            getRoomPricesDB()
+            .then((data) => {
+                setRoomPrices(data)
+            })
         }
-        return <div className={`${roomSize}Rooms`}>{rooms}</div>
-    }
+
+        updateRoomInfo()
+    }, [checkInDate, checkOutDate])
 
 
     return (
@@ -85,7 +85,7 @@ const Reservation = () => {
                     detail is thoughtfully arranged to ensure a memorable experience.
                   </p>
                   <p>Rooms Available: {availRooms.small}</p>
-                  <p>Price: $</p>
+                  <p>Price: ${roomPrices.small}</p>
                   <ResRoom
                     size={"small"}
                     checkInDate={checkInDate}
@@ -108,7 +108,7 @@ const Reservation = () => {
                     elegance intertwine harmoniously.
                   </p>
                   <p>Rooms Available: {availRooms.medium}</p>
-                  <p>Price : $$</p>
+                  <p>Price: ${roomPrices.medium}</p>
                   <ResRoom
                     size={"medium"}
                     checkInDate={checkInDate}
@@ -127,7 +127,7 @@ const Reservation = () => {
                     ambiance of our luxury room and indulge in an unforgettable stay.
                   </p>
                   <p>Rooms Available: {availRooms.large}</p>
-                  <p>Price: $$$ </p>
+                  <p>Price: ${roomPrices.large} </p>
                   <ResRoom
                     size={"large"}
                     checkInDate={checkInDate}

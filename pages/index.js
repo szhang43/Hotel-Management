@@ -117,7 +117,7 @@ const DuckNest = () => {
 
                     <div className={styles.box}>
                         <h2>Contact Us</h2>
-                        <p className={styles.description}> We'd love to hear from you!</p>
+                        <p className={styles.description}> We&apos;d love to hear from you!</p>
                         <div className={styles.contactInfo}>
                             {/* Add your contact information or placeholder here */}
                             <form>
