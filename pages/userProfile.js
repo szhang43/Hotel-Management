@@ -1,7 +1,7 @@
-import {useEffect, useState} from "react"; 
+import {useEffect, useState} from "react";
 import Link from 'next/link';
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "@/firebase/initFirebase"; 
+import { auth } from "@/firebase/initFirebase";
 import Reservation from "@/components/ReservationFetch";
 import styles from '@/styles/profile.module.css';
 
@@ -30,9 +30,8 @@ function UserProfile(){
                         <Reservation/>
                         <button className={styles.signout} onClick={(event) => signOut(auth)}>Sign out</button>
                     </div>
-                    
                 ) : (
-                    <p>Please <Link href="login"> Login </Link> 
+                    <p>Please <Link href="login"> Login </Link>
                     or <Link href="login"> create </Link>  an account</p>
                 )}
                 <Link className={styles.goback} href="/">Back</Link>
