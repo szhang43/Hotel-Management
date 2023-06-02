@@ -3,12 +3,14 @@ import styles from '@/styles/ResBooked.module.css';
 
 function ReservationBooked(){
     return(
-        <div className={styles.success}>
-            <img src="/img/confirm.png" alt="confirm" className={styles.confirm} />
-            <h1>Confirmed!</h1>
-            <p>Your reservation has been successfully Booked
-            View your user profile to see additional details.
-            </p>
+        <div className={styles.background}>
+            <div className={styles.success}>
+                <img src="/img/confirm-icon.png" alt="confirm" className={styles.confirm} />
+                <h1 className={styles.confirmed}>Confirmed!</h1>
+                <p>Your reservation has been successfully Booked
+                View your user profile to see additional details.
+                </p>
+            </div>
         </div>
     );
 };

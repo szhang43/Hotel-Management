@@ -3,6 +3,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import { getAuth } from 'firebase/auth';
 import { bookRoomDB } from '@/firebase/firebaseUtils';
 import { useRouter } from 'next/router';
+import styles from '@/styles/checkout.module.css';
 
 //TODO: move this to a css file
 // This is the card input styling
@@ -113,37 +114,39 @@ function PaymentForm() {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       {!success ?
-        <form onSubmit={handleSubmit}>
-          <p>Reservation Information</p>
-          <p>Your selected dates:</p>
-          <p>{dateIn} - {dateOut}</p>
-          <p>Chosen Room: {displayRoomSize}</p>
-          <p>Number of Adults</p>
-          <input placeholder="Adult" />
-          <p>Number of Children (age below 18)</p>
-          <input placeholder="Children" />
-          <p>Credit Card Information</p>
-          <p>First Name</p>
-          <input placeholder="First Name" />
-          <p>Last Name</p>
-          <input placeholder="Last Name" />
-          <fieldset className="FormGroup">
-            <div className="FormRow">
-              <CardElement options={CARD_OPTIONS} />
-              {/* <CardElement/> */}
-            </div>
-          </fieldset>
-          <button>Pay</button>
-        </form>
+            <form onSubmit={handleSubmit}>
+              <h1 className={styles.resInfo}>Reservation Information</h1>
+              <p>Your selected dates:</p>
+              <p>{dateIn} - {dateOut}</p>
+              <p>Chosen Room: {displayRoomSize}</p>
+              <p>Number of Adults</p>
+              <input placeholder="Adult" />
+              <p>Number of Children (age below 18)</p>
+              <input placeholder="Children" />
+
+              <h3 className={styles.cardInfo}>Credit Card Information</h3>
+              <p>First Name</p>
+              <input placeholder="First Name" />
+              <p>Last Name</p>
+              <input placeholder="Last Name" />
+
+                <fieldset className="FormGroup">
+                  <div className="FormRow">
+                    <CardElement options={CARD_OPTIONS} />
+                    {/* <CardElement/> */}
+                  </div>
+                </fieldset>
+              <button className={styles.button}>Pay</button>
+          </form>
         :
         //After payment success
         <div>
-        <h2>Payment Successful</h2>
-        <p>Please Confirm your Reservation Booking</p>
-        <button onClick={bookRoom}>Confirm</button>
-      </div>
+          <h1 className={styles.success}>Payment Successful!</h1>
+          <p>Please Confirm Your Reservation</p>
+          <button className={styles.confirm} onClick={bookRoom}>Confirm</button>
+        </div>
       }
     </div>
   )
