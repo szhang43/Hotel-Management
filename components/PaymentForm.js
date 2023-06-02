@@ -1,152 +1,149 @@
-import React, { useState, useEffect } from "react";
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
-import { getAuth } from 'firebase/auth';
-import { bookRoomDB } from '@/firebase/firebaseUtils';
-import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import {
+  PaymentElement,
+  useStripe,
+  useElements,
+} from '@stripe/react-stripe-js';
 
-//TODO: move this to a css file
-// This is the card input styling
-const CARD_OPTIONS = {
-  iconStyle: "solid",
-  style: {
-    base: {
-      // iconColor: "#878787",
-      color: "#636263",
-      fontWeight: 500,
-      fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
-      fontSize: "16px",
-      fontSmoothing: "antialiased",
-      ":-webkit-autofill": { color: "#fce883" },
-      "::placeholder": { color: "#d1cdd1" }
-    },
-    invalid: {
-      iconColor: "#fc141c",
-      color: "#fc141c"
-    }
-  }
-}
-
-function PaymentForm() {
-  const [success, setSuccess] = useState(false);
+export default function Form(paymentIntent) {
+  const [email, setEmail] = useState('');
+  const [locAmount, setLocAmount] = useState('300');
+  const [message, setMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
 
-  const router = useRouter();
-  const { dateIn, dateOut, roomSize } = router.query;
-  const [displayRoomSize, setDisplayRoomSize] = useState(roomSize);
-
-  
-
   useEffect(() => {
-    if (roomSize === "large") {
-      setDisplayRoomSize("Luxury");
-    } else if (roomSize === "small") {
-      setDisplayRoomSize("The Cozy");
-    } else if (roomSize === "medium") {
-      setDisplayRoomSize("Room Deluxe")
+    if (!stripe) {
+      return;
     }
-  }, [roomSize]);
 
-  
-  const bookRoom = () => {
-    const auth = getAuth();
-    const user = auth.currentUser;
+    //Grab the client secret from url params
+    const clientSecret = new URLSearchParams(window.location.search).get(
+      'payment_intent_client_secret'
+    );
 
-    if (user) {
-      const nameArr = user.displayName.split(" ");
-
-      const userData = {
-        fName: nameArr[0],
-        lName: nameArr[1],
-        uid: user.uid,
-      }
-      const resData = {
-        dateIn: dateIn,
-        dateOut: dateOut,
-        roomSize: roomSize,
-      }
-      bookRoomDB(userData, resData)
-        .then(() => {
-          router.push("/ResSuccess");
-        })
-    } else {
-      alert("Reservation was not successful");
+    if (!clientSecret) {
+      return;
     }
-  }
 
+    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
+      switch (paymentIntent.status) {
+        case 'succeeded':
+          setMessage('Payment succeeded!');
+          break;
+        case 'processing':
+          setMessage('Your payment is processing.');
+          break;
+        case 'requires_payment_method':
+          setMessage('Your payment was not successful, please try again.');
+          break;
+        default:
+          setMessage('Something went wrong.');
+          break;
+      }
+    });
+  }, [stripe]);
 
+  const handleAmount = async (val) => {
+    setLocAmount(val);
+    fetch('api/stripe_intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        amount: val * 100,
+        payment_intent_id: paymentIntent.paymentIntent,
+      }),
+    });
+  };
 
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement)
+
+    if (!stripe || !elements) {
+      console.log('not loaded');
+      // Stripe.js has not yet loaded.
+      return;
+    }
+
+    setIsLoading(true);
+
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: 'http://localhost:3000/',
+        receipt_email: email,
+        shipping: {
+          address: { city: 'NY' },
+          name: 'Shipping user',
+        },
+        payment_method_data: {
+          billing_details: {
+            name: 'Billing user',
+          },
+        },
+      },
     });
 
-    if (!error) {
-      try {
-        const { id } = paymentMethod;
-        const response = await fetch("/api/payment", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            amount: 1000, // Amount to charge by, needs to be changed to room price
-            id
-          })
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          setSuccess(true);
-        }
-      } catch (error) {
-        alert("Error: " + error);
-        console.log("Error:", error);
-      }
+    if (error.type === 'card_error' || error.type === 'validation_error') {
+      setMessage(error.message);
     } else {
-      alert("Error: " + error);
-      console.log(error.message);
+      setMessage('An unexpected error occured.');
     }
-  }
+
+    setIsLoading(false);
+  };
 
   return (
-    <div>
-      {!success ?
-        <form onSubmit={handleSubmit}>
-          <p>Reservation Information</p>
-          <p>Your selected dates:</p>
-          <p>{dateIn} - {dateOut}</p>
-          <p>Chosen Room: {displayRoomSize}</p>
-          <p>Number of Adults</p>
-          <input placeholder="Adult" />
-          <p>Number of Children (age below 18)</p>
-          <input placeholder="Children" />
-          <p>Credit Card Information</p>
-          <p>First Name</p>
-          <input placeholder="First Name" />
-          <p>Last Name</p>
-          <input placeholder="Last Name" />
-          <fieldset className="FormGroup">
-            <div className="FormRow">
-              <CardElement options={CARD_OPTIONS} />
-              {/* <CardElement/> */}
-            </div>
-          </fieldset>
-          <button>Pay</button>
-        </form>
-        :
-        //After payment success
-        <div>
-        <h2>Payment Successful</h2>
-        <p>Please Confirm your Reservation Booking</p>
-        <button onClick={bookRoom}>Confirm</button>
-      </div>
-      }
-    </div>
-  )
+    <>
+      <form id="payment-form" onSubmit={handleSubmit} className="m-auto">
+        <div className="mb-3">
+          Cart Total:
+          <input
+            id="amount"
+            type="text"
+            value={locAmount}
+            className="block
+            w-full
+            rounded-md
+            border-gray-300
+            shadow-sm h-16"
+            onChange={(e) => handleAmount(e.target.value)}
+            placeholder="Enter email address"
+          />
+        </div>
+        <div className="mb-6">
+          Email address:
+          <input
+            className="block
+            w-full
+            rounded-md
+            border-gray-300
+            shadow-sm h-16"
+            id="email"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter email address"
+          />
+        </div>
+        <PaymentElement id="payment-element" />
+        <button
+          className="elements-style-background"
+          disabled={isLoading || !stripe || !elements}
+          id="submit"
+        >
+          <span id="button-text">
+            {isLoading ? (
+              <div className="spinner" id="spinner"></div>
+            ) : (
+              'Pay now'
+            )}
+          </span>
+        </button>
+        {/* Show any error or success messages */}
+        {message && <div id="payment-message">{message}</div>}
+      </form>
+    </>
+  );
 }
-
-export default PaymentForm;
