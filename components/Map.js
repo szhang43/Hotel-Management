@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import loader from '../pages/googleMapsLoader';
+import loader from '@/components/googleMapsLoader';
 
 const Map = ({ address }) => {
     const [map, setMap] = useState(null);
