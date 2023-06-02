@@ -16,6 +16,12 @@
     align-items: center;
 }
 
+.userForm {
+  margin:20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
   .welcome {
     font-family: 'Playfair Display', serif;
   }

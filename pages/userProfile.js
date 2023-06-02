@@ -18,7 +18,7 @@ function UserProfile(){
         <div className={styles.background}>
             <div className = {styles.userProfile}>
                 {user ? (
-                    <div>
+                    <div className={styles.userForm}>
                         <h2 className={styles.welcome}>Welcome, {user.displayName}!</h2>
                         <h4 className={styles.prof}>Profile</h4>
                         <span>First Name: {user.displayName.split(" ")[0]+(" ")}</span>
