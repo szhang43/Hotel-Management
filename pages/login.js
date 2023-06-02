@@ -24,7 +24,7 @@ function Login() {
   }
 
   return (
-    <div className="login">
+    <div className={styles.login}>
       <div className="container">
         <RegisterForm />
 

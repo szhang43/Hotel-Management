@@ -40,14 +40,14 @@ const ChangeRoomPrice = () => {
     return (
         <form>
             <div className={styles.container}>
-            <p>Current Prices:</p>
+            <h3 className={styles.currPrice}>Current Prices:</h3>
                 <ul>
                     <li>Large Rooms: ${roomPrices.large}</li>
                     <li>Medium Rooms: ${roomPrices.medium}</li>
                     <li>Small Rooms: ${roomPrices.small}</li>
                 </ul>
 
-                <h3>Update Room Prices</h3>
+                <h3 className={styles.updatePrice}>Update Room Prices</h3>
                 <div>Room Type: <strong>{size}</strong></div>
 
                 <div className={styles.sizeInput}>
