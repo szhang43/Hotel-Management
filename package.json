@@ -23,7 +23,6 @@
     "eslint-config-next": "13.4.3",
     "expo": "^48.0.17",
     "expo-linear-gradient": "~12.1.2",
-    "express": "^4.18.2",
     "firebase": "^9.22.0",
     "next": "13.4.3",
     "react": "18.2.0",
