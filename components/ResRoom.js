@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 
 const ResRoom = (props) => {
     const router = useRouter();
+    
     const bookRoom = () => {
         const auth = getAuth();
         const user = auth.currentUser;
@@ -28,7 +29,7 @@ const ResRoom = (props) => {
             // .then(() => {
                 router.push(
                     {pathname: "/checkout",
-                    query: resData
+                    query: {...userData, ...resData}
                 });
             // })
         }
