@@ -81,7 +81,6 @@
   align-items: center;
   margin-bottom: 20px;
   padding-right: 25px;
-
 }
 
 .buttonContainer {
@@ -178,6 +177,7 @@
   margin-bottom: 10px;
   border-radius: 4px;
   font-size: 14px; /* Adjust the font size */
+  font-family: 'Jost', sans-serif;
 }
 
 .contactInfo .formRow {

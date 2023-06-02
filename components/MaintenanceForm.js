@@ -49,7 +49,7 @@ const MaintenanceForm = () => {
             <div className={styles.container}>
 
 
-                <h3>Make Maintenance Request</h3>
+                <h3 className={styles.makeReq}>Make Maintenance Request</h3>
                 <div>Room Type: <strong>{size}</strong></div>
 
                 <div className={styles.sizeInput}>
@@ -65,25 +65,27 @@ const MaintenanceForm = () => {
                     onChange={e=>setSize(e.target.value)}
                     />Large
                 </div>
-
+            
 
 
                 <input type="text" placeholder="Enter Reason" onChange={e=>setReason(e.target.value)}/>
                 <input type="text" placeholder="Enter Room ID" onChange={e=>setRoomId(e.target.value)}/>
 
                 <button className={styles.button} onClick={handleSubmit}>Send Request</button>
-                
-                <h4>Current Maintenance Requests</h4>
-                <ul>
+            </div>
+
+            <div className={styles.containertwo}>
+                <h3 className={styles.titleline}>Current Maintenance Requests</h3>
+                 <ul>
                     {maintenance.map((item) => {
                         return (
                             <li key={item.maintId}>
                                 <p>Room Type: {item.roomSize}</p>
-                                <p>Room ID: {item.roomId}</p>
-                                <p>Maintenance ID: {item.maintId}</p>
+                                 <p>Room ID: {item.roomId}</p>
+                                 <p>Maintenance ID: {item.maintId}</p>
                                 <p>Reason: {item.description}</p>
                                 <p>Date Submitted: {item.date}</p>
-                                <button onClick={(e) => {
+                                <button className={styles.MaintButton} onClick={(e) => {
                                     e.preventDefault()
                                     removeMaintenance(item.maintId)
                                 }}>Remove Request</button>
@@ -91,7 +93,8 @@ const MaintenanceForm = () => {
                         )
                     })}
                 </ul>
-            </div>
+            </div>    
+            
             
         </form>
     )

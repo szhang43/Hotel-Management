@@ -45,14 +45,14 @@ const ChangeNumRooms = (props) => {
     return (
         <form>
             <div className={styles.container}>
-            <p>Current Inventory:</p>
+            <h3 className={styles.currInv}>Current Inventory:</h3>
                 <ul>
                     <li>Large Rooms: {availRooms.large}</li>
                     <li>Medium Rooms: {availRooms.medium}</li>
                     <li>Small Rooms: {availRooms.small}</li>
                 </ul>
 
-                <h3>Update Room Inventory</h3>
+                <h3 className={styles.updateRoom}>Update Room Inventory</h3>
                 <div>Room Type: <strong>{size}</strong></div>
 
                 <div className={styles.sizeInput}>
