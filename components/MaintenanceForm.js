@@ -65,7 +65,7 @@ const MaintenanceForm = () => {
                     onChange={e=>setSize(e.target.value)}
                     />Large
                 </div>
-            
+
 
 
                 <input type="text" placeholder="Enter Reason" onChange={e=>setReason(e.target.value)}/>
@@ -79,7 +79,7 @@ const MaintenanceForm = () => {
                  <ul>
                     {maintenance.map((item) => {
                         return (
-                            <li key={item.maintId}>
+                            <li key={item.maintId} className={styles.details}>
                                 <p>Room Type: {item.roomSize}</p>
                                  <p>Room ID: {item.roomId}</p>
                                  <p>Maintenance ID: {item.maintId}</p>
@@ -93,9 +93,9 @@ const MaintenanceForm = () => {
                         )
                     })}
                 </ul>
-            </div>    
-            
-            
+            </div>
+
+
         </form>
     )
 }
