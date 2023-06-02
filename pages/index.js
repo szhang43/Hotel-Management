@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '@/styles/Index.module.css';
 import Map from '@/components/Map';
 import { useRouter } from 'next/router';
-import { getAvailRoomsDB } from '@/firebase/firebaseUtils';
+import { getAvailRoomsDB, addMsgDB } from '@/firebase/firebaseUtils';
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 
@@ -51,6 +51,21 @@ const DuckNest = () => {
         let newDate = new Date(date);
         newDate.setDate(newDate.getDate() + 2);
         return newDate.toLocaleDateString('fr-ca');
+    }
+
+    const handleContactSubmit = async (e) => {
+        e.preventDefault();
+
+        await addMsgDB({
+            name: e.target.name.value,
+            phone: e.target.phone.value,
+            email: e.target.email.value,
+            message: e.target.message.value
+        })
+        .then(() => {
+            alert("Message sent!");
+            e.target.reset();
+        })
     }
 
 
@@ -120,20 +135,18 @@ const DuckNest = () => {
                         <p className={styles.description}> We&apos;d love to hear from you!</p>
                         <div className={styles.contactInfo}>
                             {/* Add your contact information or placeholder here */}
-                            <form>
-                            <div className={styles.formRow}>
-                                <input name="name" placeholder="Full Name" type="text" />
-                            </div>
-                            <div className={styles.formRow}>
-                                <input name="email" placeholder="Email" type="email" />
-                                <input name="phone" placeholder="Phone Number" type="text" />
-                            </div>
-                            <div className={styles.formRow}>
-                                <textarea type="text" placeholder="Your Message"></textarea>
-                            </div>
-                            <button type="button" className={`${styles.searchButton}`}>
-                                Send Message
-                            </button>
+                            <form onSubmit={handleContactSubmit}>
+                                <div className={styles.formRow}>
+                                    <input name="name" placeholder="Full Name" type="text" required />
+                                </div>
+                                <div className={styles.formRow}>
+                                    <input name="email" placeholder="Email" type="email" required />
+                                    <input name="phone" placeholder="Phone Number" type="text" required />
+                                </div>
+                                <div className={styles.formRow}>
+                                    <textarea name="message" type="text" placeholder="Your Message" required></textarea>
+                                </div>
+                                <button className={styles.searchButton}> Send Message </button>
                             </form>
                             {/*<p>+1-800-DUCKS</p>
                             <p>contact@ducksnest.com</p>*/}

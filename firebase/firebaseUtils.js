@@ -224,6 +224,15 @@ const removeMaintenanceDB = async (maintId) => {
     }
 }
 
+const addMsgDB = async (msg) => {
+    const dateToday = new Date().toLocaleDateString('fr-ca')
+
+    const docRef = await addDoc(collection(db, "HTM2", "Hotel Info", "Messages"), {...msg, date: dateToday})
+    await updateDoc(doc(db, "HTM2", "Hotel Info", "Messages", docRef.id), {msgId: docRef.id})
+
+}
+
+
 
 
 export {
@@ -240,5 +249,6 @@ export {
     setRoomPriceDB,
     addMaintenanceDB,
     getMaintenanceDB,
-    removeMaintenanceDB
+    removeMaintenanceDB,
+    addMsgDB
 }
