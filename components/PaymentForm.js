@@ -6,6 +6,7 @@ import {
 } from '@stripe/react-stripe-js';
 import { bookRoomDB } from '@/firebase/firebaseUtils';
 import { useRouter } from 'next/router';
+import styles from '@/styles/checkout.module.css';
 
 export default function Form(props) {
     const [email, setEmail] = useState('');
@@ -114,7 +115,7 @@ export default function Form(props) {
     return (
         <>
             <form id="payment-form" onSubmit={handleSubmit} className="m-auto">
-                <div className="mb-3">
+                <div className={styles.cartTotal}>
                     Cart Total:
                     <input
                         id="amount"
@@ -129,7 +130,7 @@ export default function Form(props) {
                         placeholder="Enter email address"
                     />
                 </div>
-                <div className="mb-6">
+                <div className={styles.mail}>
                     Email address:
                     <input
                         className="block
@@ -146,7 +147,7 @@ export default function Form(props) {
                 </div>
                 <PaymentElement id="payment-element" />
                 <button
-                    className="elements-style-background"
+                    className={styles.payButton}
                     disabled={isLoading || !stripe || !elements}
                     id="submit"
                 >

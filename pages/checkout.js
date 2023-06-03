@@ -57,17 +57,21 @@ export default function Home() {
 
     return (
         <div>
+            <div className={styles.background}>
             <Head>
                 <title>Stripe Elements</title>
             </Head>
-            <h1 className="text-2xl bold mb-4 mt-4 text-center">
+            <h1 className={styles.accept}>
                 Accept payments with credit card
             </h1>
-            {clientSecret && (
-                <Elements options={options} stripe={stripe}>
-                    <CheckoutForm paymentIntent={paymentIntent} userData={userData} resData={resData} />
-                </Elements>
-            )}
+                <div className={styles.container}>
+                    {clientSecret && (
+                        <Elements options={options} stripe={stripe}>
+                            <CheckoutForm paymentIntent={paymentIntent} userData={userData} resData={resData} />
+                        </Elements>
+                    )}
+                </div>    
+            </div>
         </div>
     );
 }
