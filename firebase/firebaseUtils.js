@@ -232,6 +232,26 @@ const addMsgDB = async (msg) => {
 
 }
 
+const getMsgsDB = async () => {
+    let allMsgs = []
+
+    const msgSnap = await getDocs(collection(db, "HTM2", "Hotel Info", "Messages"));
+    msgSnap.forEach((doc) => {
+        allMsgs.push(doc.data())
+    })
+
+    return allMsgs
+}
+
+const deleteMsgDB = async (msgId) => {
+    const docSnap = await getDoc(doc(db, "HTM2", "Hotel Info", "Messages", msgId))
+    if(docSnap.exists()){
+        await deleteDoc(doc(db, "HTM2", "Hotel Info", "Messages", msgId));
+    } else {
+        console.log("Message doc does not exist");
+    }
+}
+
 
 
 
@@ -250,5 +270,7 @@ export {
     addMaintenanceDB,
     getMaintenanceDB,
     removeMaintenanceDB,
-    addMsgDB
+    addMsgDB,
+    getMsgsDB,
+    deleteMsgDB
 }

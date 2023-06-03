@@ -3,6 +3,7 @@ import styles from '@/styles/Admin.module.css';
 import ChangeNumRooms from '@/components/ChangeNumRooms';
 import ChangeRoomPrice from '@/components/ChangeRoomPrice';
 import MaintenanceForm from '@/components/MaintenanceForm';
+import MessageForm from '@/components/MessageForm';
 
 
 const Admin = () => {
@@ -14,6 +15,7 @@ const Admin = () => {
         <ChangeNumRooms/>
         <ChangeRoomPrice/>
         <MaintenanceForm/>
+        <MessageForm/>
       </div>
     </div>
   );

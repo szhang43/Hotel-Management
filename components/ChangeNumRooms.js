@@ -38,7 +38,6 @@ const ChangeNumRooms = (props) => {
         setNumRoomDB(size, num)
         .then(() => {
             updateTotalRooms()
-
         })
     }
 
@@ -53,7 +52,7 @@ const ChangeNumRooms = (props) => {
                 </ul>
 
                 <h3 className={styles.updateRoom}>Update Room Inventory</h3>
-                <div>Room Type: <strong>{size}</strong></div>
+                {/* <div>Room Type: <strong>{size}</strong></div> */}
 
                 <div className={styles.sizeInput}>
                     <input name="size" value="small" type="radio"
@@ -76,8 +75,8 @@ const ChangeNumRooms = (props) => {
                 onChange={e=>setInput(e.target.value)}
                 />
 
-                <button className={styles.button} value={"add"} onClick={handleSubmit}>Add Rooms</button>
-                <button className={styles.button} value={"remove"} onClick={handleSubmit}>Remove Rooms</button>
+                <button className={styles.button} value={"add"} onClick={handleSubmit}>Add {input && size ? `${input} ${size}` : ""} {input > 1 ? "rooms" : "room"}</button>
+                <button className={styles.button} value={"remove"} onClick={handleSubmit}>Remove {input && size ? `${input} ${size}` : ""} {input > 1 ? "rooms" : "room"}</button>
             </div>
         </form>
     );
