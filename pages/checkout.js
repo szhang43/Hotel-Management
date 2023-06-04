@@ -15,7 +15,7 @@ export default function Home() {
 
     const router = useRouter();
     const resInfo = router.query;
-    console.log(resInfo);
+    // console.log(resInfo);
 
     const userData = {
         fName: resInfo.fName,
@@ -67,7 +67,7 @@ export default function Home() {
                 <div className={styles.container}>
                     {clientSecret && (
                         <Elements options={options} stripe={stripe}>
-                            <CheckoutForm paymentIntent={paymentIntent} userData={userData} resData={resData} />
+                            <CheckoutForm paymentIntent={paymentIntent} userData={userData} resData={resData} price={resInfo.price} />
                         </Elements>
                     )}
                 </div>    

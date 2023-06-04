@@ -27,10 +27,10 @@ const ResRoom = (props) => {
 
             // bookRoomDB(userData, resData)
             // .then(() => {
-                router.push(
-                    {pathname: "/checkout",
-                    query: {...userData, ...resData}
-                });
+            router.push(
+                {pathname: "/checkout",
+                query: {...userData, ...resData, price: props.price}
+            });
             // })
         }
         else{

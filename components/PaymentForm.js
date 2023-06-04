@@ -10,17 +10,19 @@ import styles from '@/styles/checkout.module.css';
 
 export default function Form(props) {
     const [email, setEmail] = useState('');
-    const [locAmount, setLocAmount] = useState('300');
+    const [locAmount, setLocAmount] = useState('');
     const [message, setMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const stripe = useStripe();
     const elements = useElements();
     const router = useRouter();
 
-    console.log(props.userData);
-    console.log(props.resData);
+    // console.log(props.userData);
+    // console.log(props.resData);
 
     useEffect(() => {
+        setLocAmount(props.price);
+
         if (!stripe) {
             return;
         }
@@ -50,7 +52,7 @@ export default function Form(props) {
                     break;
             }
         });
-    }, [stripe]);
+    }, [stripe, props.price]);
 
     const handleAmount = async (val) => {
         setLocAmount(val);
@@ -126,8 +128,8 @@ export default function Form(props) {
                         rounded-md
                         border-gray-300
                         shadow-sm h-16"
-                        onChange={(e) => handleAmount(e.target.value)}
-                        placeholder="Enter email address"
+                        disabled
+                        // onChange={(e) => handleAmount(e.target.value)}
                     />
                 </div>
                 <div className={styles.mail}>

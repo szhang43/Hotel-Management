@@ -92,6 +92,7 @@ const Reservation = () => {
                             size={"small"}
                             checkInDate={checkInDate}
                             checkOutDate={checkOutDate}
+                            price={roomPrices.small}
                         />
                     ) : (
                         <p>Sorry, no rooms are available for these dates.</p>
@@ -119,6 +120,7 @@ const Reservation = () => {
                             size={"medium"}
                             checkInDate={checkInDate}
                             checkOutDate={checkOutDate}
+                            price={roomPrices.medium}
                         />
                     ) : (
                         <p>Sorry, no rooms are available for these dates.</p>
@@ -142,6 +144,7 @@ const Reservation = () => {
                             size={"large"}
                             checkInDate={checkInDate}
                             checkOutDate={checkOutDate}
+                            price={roomPrices.large}
                         />
                     ) : (
                         <p>Sorry, no rooms are available for these dates.</p>
