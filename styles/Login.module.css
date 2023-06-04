@@ -7,7 +7,6 @@
   padding-bottom: 50vh;
 }
 
-
 .formContainer {
   display: flex;
   flex-direction: column;
@@ -18,8 +17,16 @@
   border-radius: 4px;
   font-family: 'Playfair Display', serif;
   border: 1px solid #ccc;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   background-color: white;
+}
+
+.loginImage {
+  width: 200px;
+  align-items: center;
+  height: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .formContainer h3 {
@@ -30,7 +37,7 @@
   background-color: #f5f5f5;
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-family: 'Jost', sans-serif;
@@ -49,6 +56,7 @@
   border-radius: 4px;
   cursor: pointer;
   font-family: 'Playfair Display', serif;
+  margin-bottom: 20px;
 }
 
 .formContainer button.button:hover {
