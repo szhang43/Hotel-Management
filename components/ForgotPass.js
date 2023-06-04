@@ -18,6 +18,11 @@ function ForgotPasswordForm() {
 
   return (
     <div className={styles.formContainer}>
+      <img
+        src="/img/Ducks.png"
+        alt="Login Image"
+        className={styles.loginImage}
+      />
       <h3>Forgot Password</h3>
       <input
         placeholder="Email"

@@ -102,6 +102,11 @@ function RegisterForm() {
 
   return (
     <div className={styles.formContainer}>
+      <img
+        src="/img/Ducks.png"
+        alt="Login Image"
+        className={styles.loginImage}
+      />
       <h3>Register User</h3>
       <input
         placeholder="First Name"
