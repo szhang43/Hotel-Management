@@ -24,41 +24,56 @@
   height: 50vh;
   width: 80%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  animation: changeBackground 48s infinite; /* Adjust the animation duration to match the desired run time */
+  animation: changeBackground 56s infinite; /* Adjust the animation duration to match the desired run time */
 }
 
 @keyframes changeBackground {
   0% {
     background-image: url("/img/home.jpg");
   }
-  14.285% {
+  10% {
     background-image: url("/img/home.jpg");
   }
-  21.428% {
+  16% {
     background-image: url("/img/deluxe.jpg");
   }
-  35.714% {
+  26% {
     background-image: url("/img/deluxe.jpg");
   }
-  42.857% {
+  32% {
+    background-image: url("/img/beach.jpg");
+    animation-delay: 8s;
+  }
+  42% {
     background-image: url("/img/beach.jpg");
   }
-  57.142% {
-    background-image: url("/img/beach.jpg");
-  }
-  64.285% {
+  48% {
     background-image: url("/img/view.jpg");
   }
-  78.571% {
+  58% {
     background-image: url("/img/view.jpg");
   }
-  85.714% {
+  64% {
     background-image: url("/img/Deck.jpg");
+    animation-delay: 8s;
+  }
+  74% {
+    background-image: url("/img/Deck.jpg");
+  }
+  80% {
+    background-image: url("/img/home.jpg");
+  }
+  90% {
+    background-image: url("/img/home.jpg");
+  }
+  96% {
+    background-image: url("/img/deluxe.jpg");
   }
   100% {
-    background-image: url("/img/Deck.jpg");
+    background-image: url("/img/deluxe.jpg");
   }
 }
+
 
 
 
