@@ -5,7 +5,7 @@ import Link from "next/link";
 import RegisterForm from "@/components/Register";
 import LoginForm from "@/components/Login";
 import ForgotPasswordForm from "@/components/ForgotPass";
-import styles from '@/styles/Login.module.css';
+import styles from "@/styles/Login.module.css";
 
 function Login() {
   const [user, setUser] = useState({});
@@ -27,33 +27,37 @@ function Login() {
       <div className="container">
         {!showRegisterForm && !showForgotPasswordForm && !user && <LoginForm />}
 
-        <div className={styles.formToggle}>
-          <div className={styles.buttonContainer}>
-            <button
-              onClick={() => {
-                setShowForgotPasswordForm(!showForgotPasswordForm);
-                setShowRegisterForm(false);
-              }}
-            >
-              {showForgotPasswordForm ? "Remember Password?" : "Forgot Password?"}
-            </button>
+        {(!showRegisterForm || showForgotPasswordForm) && (
+          <div className={styles.formToggle}>
+            <div className={styles.buttonContainer}>
+              <button
+                onClick={() => {
+                  setShowForgotPasswordForm(!showForgotPasswordForm);
+                  setShowRegisterForm(false);
+                }}
+              >
+                {showForgotPasswordForm ? "Back to Login" : "Forgot Password?"}
+              </button>
+            </div>
+            {showForgotPasswordForm && <ForgotPasswordForm />}
           </div>
-          {showForgotPasswordForm && <ForgotPasswordForm />}
-        </div>
+        )}
 
-        <div className={styles.formToggle}>
-          <div className={styles.buttonContainer}>
-            <button
-              onClick={() => {
-                setShowRegisterForm(!showRegisterForm);
-                setShowForgotPasswordForm(false);
-              }}
-            >
-              {showRegisterForm ? "Login" : "Don't have an account? Sign up"}
-            </button>
+        {!showForgotPasswordForm && (
+          <div className={styles.formToggle}>
+            <div className={styles.buttonContainer}>
+              <button
+                onClick={() => {
+                  setShowRegisterForm(!showRegisterForm);
+                  setShowForgotPasswordForm(false);
+                }}
+              >
+                {showRegisterForm ? "Back to Login" : "Don't have an account? Sign up"}
+              </button>
+            </div>
+            {showRegisterForm && <RegisterForm />}
           </div>
-          {showRegisterForm && <RegisterForm />}
-        </div>
+        )}
       </div>
     </div>
   );
