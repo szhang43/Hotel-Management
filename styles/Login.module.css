@@ -19,10 +19,23 @@
   border: 1px solid #ccc;
   margin-bottom: 20px;
   background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.loginTitle {
+  font-size: 25px;
 }
 
 .loginImage {
   width: 200px;
+  align-items: center;
+  height: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.lockImage {
+  width: 140px;
   align-items: center;
   height: auto;
   margin-top: 15px;
@@ -50,7 +63,7 @@
 .formContainer button.button {
   width: 150px;
   padding: 10px;
-  background-color: #5c5b5b;
+  background-color: green;
   color: #ffffff;
   border: none;
   border-radius: 4px;
@@ -60,7 +73,7 @@
 }
 
 .formContainer button.button:hover {
-  background-color: #a8a8a7;
+  background-color: rgb(10, 150, 10);;
 }
 
 .formToggle {
@@ -89,4 +102,12 @@
   border: 1px solid #ccc;
   margin-top: 10px;
   padding: 20px;
+}
+
+
+.description {
+  font-size: 14px;
+  color: #555555;
+  margin-bottom: 20px;
+  text-align: center;
 }
