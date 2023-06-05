@@ -26,7 +26,11 @@ function LoginForm() {
         alt="Login Image"
         className={styles.loginImage}
       />
-        <h3>Login</h3>
+        <h3 className={styles.loginTitle}>Login</h3>
+        <p className={styles.description}>
+        Welcome back! <hr></hr>
+        Enjoy personalized experiences,
+         manage your bookings, and more. Login to your account now!</p>
         <input
           placeholder="Email"
           onChange={(event) => setLoginEmail(event.target.value)}

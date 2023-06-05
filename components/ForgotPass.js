@@ -19,11 +19,14 @@ function ForgotPasswordForm() {
   return (
     <div className={styles.formContainer}>
       <img
-        src="/img/Ducks.png"
+        src="/img/lock.png"
         alt="Login Image"
-        className={styles.loginImage}
+        className={styles.lockImage}
       />
-      <h3>Forgot Password</h3>
+        <h3 className={styles.loginTitle}>Forgot Password</h3>
+      <p className={styles.description}>
+        Enter your email and we'll send you a link to get back into your account.
+      </p>
       <input
         placeholder="Email"
         onChange={(event) => setRegisterEmail(event.target.value)}
