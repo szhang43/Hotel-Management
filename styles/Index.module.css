@@ -17,14 +17,65 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("/img/home.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   margin-top: 0 auto;
   height: 50vh;
   width: 80%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  animation: changeBackground 56s infinite; /* Adjust the animation duration to match the desired run time */
 }
+
+@keyframes changeBackground {
+  0% {
+    background-image: url("/img/home.jpg");
+  }
+  10% {
+    background-image: url("/img/home.jpg");
+  }
+  16% {
+    background-image: url("/img/deluxe.jpg");
+  }
+  26% {
+    background-image: url("/img/deluxe.jpg");
+  }
+  32% {
+    background-image: url("/img/beach.jpg");
+    animation-delay: 8s;
+  }
+  42% {
+    background-image: url("/img/beach.jpg");
+  }
+  48% {
+    background-image: url("/img/view.jpg");
+  }
+  58% {
+    background-image: url("/img/view.jpg");
+  }
+  64% {
+    background-image: url("/img/Deck.jpg");
+    animation-delay: 8s;
+  }
+  74% {
+    background-image: url("/img/Deck.jpg");
+  }
+  80% {
+    background-image: url("/img/home.jpg");
+  }
+  90% {
+    background-image: url("/img/home.jpg");
+  }
+  96% {
+    background-image: url("/img/deluxe.jpg");
+  }
+  100% {
+    background-image: url("/img/deluxe.jpg");
+  }
+}
+
+
+
 
 
 .title {
@@ -33,8 +84,8 @@
   font-size: 70px;
   margin-top: 10rem;
   color: white;
-  text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.1), 1px -1px 2px rgba(0, 0, 0, 0.1),
-   -1px 1px 2px rgba(0, 0, 0, 0.1), 1px 1px 2px rgba(0, 0, 0, 0.1);
+  text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.2), 1px -1px 2px rgba(0, 0, 0, 0.2),
+   -1px 1px 2px rgba(0, 0, 0, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.2);
 
 }
 
@@ -63,7 +114,7 @@
   margin-bottom: 100px;
   font-family: 'Jost', sans-serif;
   font-size: 18px;
-  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .form {
@@ -144,6 +195,7 @@
   border-radius: 4px;
   font-family: 'Playfair Display', serif;
   font-size: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .box + .box {

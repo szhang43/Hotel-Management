@@ -102,7 +102,15 @@ function RegisterForm() {
 
   return (
     <div className={styles.formContainer}>
-      <h3>Register User</h3>
+      <img
+        src="/img/Ducks.png"
+        alt="Login Image"
+        className={styles.loginImage}
+      />
+        <h3 className={styles.loginTitle}>Join the Nest</h3>
+      <p className={styles.description}>
+      Unlock exclusive benefits and seamless booking with our hotel website. Sign up now!
+      </p>
       <input
         placeholder="First Name"
         onChange={(event) => setFirstName(event.target.value)}

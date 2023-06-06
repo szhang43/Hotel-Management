@@ -224,6 +224,35 @@ const removeMaintenanceDB = async (maintId) => {
     }
 }
 
+const addMsgDB = async (msg) => {
+    const dateToday = new Date().toLocaleDateString('fr-ca')
+
+    const docRef = await addDoc(collection(db, "HTM2", "Hotel Info", "Messages"), {...msg, date: dateToday})
+    await updateDoc(doc(db, "HTM2", "Hotel Info", "Messages", docRef.id), {msgId: docRef.id})
+
+}
+
+const getMsgsDB = async () => {
+    let allMsgs = []
+
+    const msgSnap = await getDocs(collection(db, "HTM2", "Hotel Info", "Messages"));
+    msgSnap.forEach((doc) => {
+        allMsgs.push(doc.data())
+    })
+
+    return allMsgs
+}
+
+const deleteMsgDB = async (msgId) => {
+    const docSnap = await getDoc(doc(db, "HTM2", "Hotel Info", "Messages", msgId))
+    if(docSnap.exists()){
+        await deleteDoc(doc(db, "HTM2", "Hotel Info", "Messages", msgId));
+    } else {
+        console.log("Message doc does not exist");
+    }
+}
+
+
 
 
 export {
@@ -240,5 +269,8 @@ export {
     setRoomPriceDB,
     addMaintenanceDB,
     getMaintenanceDB,
-    removeMaintenanceDB
+    removeMaintenanceDB,
+    addMsgDB,
+    getMsgsDB,
+    deleteMsgDB
 }

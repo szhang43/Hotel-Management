@@ -1,39 +1,71 @@
- @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap');
- @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
 
 .container {
-    background-image: linear-gradient( 58.2deg,  rgba(40,91,212,0.73) -3%, rgba(171,53,163,0.45) 49.3%, rgba(255,204,112,0.37) 97.7% );
-    padding-bottom: 10%;
-}
+    background-image: linear-gradient(58.2deg, rgba(40, 91, 212, 0.73) -3%, rgba(171, 53, 163, 0.45) 49.3%, rgba(255, 204, 112, 0.37) 97.7%);
+    padding-bottom: 50vh; 
+    background-position: center bottom; 
+  }
 
 .aboutImage {
-    display:flex;
-    display: -webkit-box;
-    margin-left: 45%;
-    margin-top: 12%;
-    object-fit: contain;
-    max-width: 60%;
-    max-height: 60%;
-
+  display: block;
+  margin-left: 55%;
+  margin-top: 12%;
+  object-fit: contain;
+  max-width: 60%;
+  max-height: 60%;
 }
 
- .aboutTitle {
-    display: flex;
-    text-align: left;
-    padding-top: 130px;
-    padding-left: 70px;
-    font-family: 'Playfair Display', serif;
-    font-size: 1vw;
- }
+.aboutTitle {
+  display: flex;
+  text-align: left;
+  padding-top: 130px;
+  padding-left: 70px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5vw;
+}
+
 .aboutus {
     display: flex;
-    text-align: left;
-    text-justify: right;
+    flex-direction: column; 
+    align-items: flex-start; 
     padding-top: 10px;
     padding-left: 70px;
-    padding-block-end: 7%;
+    padding-bottom: 7%;
     margin: 0 auto;
     font-family: 'Jost', sans-serif;
-    line-height: 1vw;
-    font-size: 1vw;
+    font-size: 20px;
+  }
+
+  @media (max-width: 1270px) {
+  .aboutImage {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%;
+    max-height: 80%;
+    margin-top: 650px; /* Add margin-top to move the image lower */
+  }
 }
+
+@media (max-width: 768px) {
+    /* Adjust styles for screens with a maximum width of 768px */
+    .aboutImage {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 80%;
+        max-height: 80%;
+        margin-top: 650px; /* Add margin-top to move the image lower */
+      }
+  
+    .aboutTitle {
+      padding-top: 60px;
+      padding-left: 30px;
+      font-size: 2vw;
+    }
+  
+    .aboutus {
+      padding: 3vh 20px;
+      padding-bottom: 30%;
+      font-size: 3vw;
+    }
+  }

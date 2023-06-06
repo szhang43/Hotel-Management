@@ -5,13 +5,12 @@ import Link from "next/link";
 import RegisterForm from "@/components/Register";
 import LoginForm from "@/components/Login";
 import ForgotPasswordForm from "@/components/ForgotPass";
-import styles from '@/styles/Login.module.css';
-
-
-
+import styles from "@/styles/Login.module.css";
 
 function Login() {
   const [user, setUser] = useState({});
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const [showForgotPasswordForm, setShowForgotPasswordForm] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
@@ -26,13 +25,40 @@ function Login() {
   return (
     <div className={styles.login}>
       <div className="container">
-        <RegisterForm />
+        {!showRegisterForm && !showForgotPasswordForm && !user && <LoginForm />}
 
-        <LoginForm />
+        {(!showRegisterForm || showForgotPasswordForm) && (
+          <div className={styles.formToggle}>
+            <div className={styles.buttonContainer}>
+              <button
+                onClick={() => {
+                  setShowForgotPasswordForm(!showForgotPasswordForm);
+                  setShowRegisterForm(false);
+                }}
+              >
+                {showForgotPasswordForm ? "Back to Login" : "Forgot Password?"}
+              </button>
+            </div>
+            {showForgotPasswordForm && <ForgotPasswordForm />}
+          </div>
+        )}
 
-        <ForgotPasswordForm />
+        {!showForgotPasswordForm && (
+          <div className={styles.formToggle}>
+            <div className={styles.buttonContainer}>
+              <button
+                onClick={() => {
+                  setShowRegisterForm(!showRegisterForm);
+                  setShowForgotPasswordForm(false);
+                }}
+              >
+                {showRegisterForm ? "Back to Login" : "Don't have an account? Sign up"}
+              </button>
+            </div>
+            {showRegisterForm && <RegisterForm />}
+          </div>
+        )}
       </div>
-
     </div>
   );
 }

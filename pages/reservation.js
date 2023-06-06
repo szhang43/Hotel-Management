@@ -72,68 +72,85 @@ const Reservation = () => {
               <p>Available Small Rooms: {availRooms.small}</p> */}
       
               <div className={styles.roomContainer}>
+                
                 <div className={styles.size}>
-                  <h1>The Cozy | Singles</h1>
-                  <img src="/img/cozy.jpg" alt="Logo" className={styles.img} />
-                  <p>
-                    Welcome to our cozy room, designed to provide a comfortable and
-                    enjoyable stay for one or two guests. Relax in a cozy queen-sized
-                    bed and appreciate the tasteful furnishings that create a soothing
-                    atmosphere. The en-suite bathroom offers convenience with modern
-                    amenities, including a rain shower and a deep soaking tub. Enjoy
-                    the pleasant ambiance of this well-appointed room, where every
-                    detail is thoughtfully arranged to ensure a memorable experience.
-                  </p>
-                  <p>Rooms Available: {availRooms.small}</p>
-                  <p>Price: ${roomPrices.small}</p>
-                  <ResRoom
-                    size={"small"}
-                    checkInDate={checkInDate}
-                    checkOutDate={checkOutDate}
-                  />
+                    <h1>The Cozy | Singles</h1>
+                    <img src="/img/cozy.jpg" alt="Logo" className={styles.img} />
+                    <p>
+                        Welcome to our cozy room, designed to provide a comfortable and
+                        enjoyable stay for one or two guests. Relax in a cozy queen-sized
+                        bed and appreciate the tasteful furnishings that create a soothing
+                        atmosphere. The en-suite bathroom offers convenience with modern
+                        amenities, including a rain shower and a deep soaking tub. Enjoy
+                        the pleasant ambiance of this well-appointed room, where every
+                        detail is thoughtfully arranged to ensure a memorable experience.
+                    </p>
+                    <p>Rooms Available: {availRooms.small}</p>
+                    <p>Price: ${roomPrices.small}</p>
+                    {availRooms.small > 0 ? (
+                        <ResRoom
+                            size={"small"}
+                            checkInDate={checkInDate}
+                            checkOutDate={checkOutDate}
+                            price={roomPrices.small}
+                        />
+                    ) : (
+                        <p>Sorry, no rooms are available for these dates.</p>
+                    )}
                 </div>
       
                 <div className={styles.size}>
-                  <h1>Room Deluxe | Family </h1>
-                  <img src="/img/deluxe.jpg" alt="Logo" className={styles.img} />
-                  <p>
-                    Discover the ultimate in comfort and sophistication within our
-                    deluxe room, thoughtfully designed to accommodate up to four
-                    guests. Step into a spacious sanctuary adorned with stylish
-                    furnishings and contemporary touches, creating an atmosphere of
-                    relaxation and indulgence. Sink into the plush beds and relish the
-                    ample space available for your entire group to unwind and
-                    rejuvenate. With its inviting ambiance and attention to detail,
-                    this exquisite retreat promises a memorable stay where comfort and
-                    elegance intertwine harmoniously.
-                  </p>
-                  <p>Rooms Available: {availRooms.medium}</p>
-                  <p>Price: ${roomPrices.medium}</p>
-                  <ResRoom
-                    size={"medium"}
-                    checkInDate={checkInDate}
-                    checkOutDate={checkOutDate}
-                  />
+                    <h1>Room Deluxe | Family </h1>
+                    <img src="/img/deluxe.jpg" alt="Logo" className={styles.img} />
+                    <p>
+                        Discover the ultimate in comfort and sophistication within our
+                        deluxe room, thoughtfully designed to accommodate up to four
+                        guests. Step into a spacious sanctuary adorned with stylish
+                        furnishings and contemporary touches, creating an atmosphere of
+                        relaxation and indulgence. Sink into the plush beds and relish the
+                        ample space available for your entire group to unwind and
+                        rejuvenate. With its inviting ambiance and attention to detail,
+                        this exquisite retreat promises a memorable stay where comfort and
+                        elegance intertwine harmoniously.
+                    </p>
+                    <p>Rooms Available: {availRooms.medium}</p>
+                    <p>Price: ${roomPrices.medium}</p>
+                    {availRooms.medium > 0 ? (
+                        <ResRoom
+                            size={"medium"}
+                            checkInDate={checkInDate}
+                            checkOutDate={checkOutDate}
+                            price={roomPrices.medium}
+                        />
+                    ) : (
+                        <p>Sorry, no rooms are available for these dates.</p>
+                    )}
                 </div>
       
                 <div className={styles.size}>
-                  <h1>Luxury | Group</h1>
-                  <img src="/img/luxury.jpg" alt="Logo" className={styles.img} />
-                  <p>
-                    Experience pure luxury in our exquisite room, where elegance meets
-                    comfort. Enjoy a king-sized bed adorned with plush linens for a
-                    restful sleep. The spacious en-suite bathroom features marble
-                    accents and indulgent amenities. Immerse yourself in the opulent
-                    ambiance of our luxury room and indulge in an unforgettable stay.
-                  </p>
-                  <p>Rooms Available: {availRooms.large}</p>
-                  <p>Price: ${roomPrices.large} </p>
-                  <ResRoom
-                    size={"large"}
-                    checkInDate={checkInDate}
-                    checkOutDate={checkOutDate}
-                  />
+                    <h1>Luxury | Group</h1>
+                    <img src="/img/luxury.jpg" alt="Logo" className={styles.img} />
+                    <p>
+                        Experience pure luxury in our exquisite room, where elegance meets
+                        comfort. Enjoy a king-sized bed adorned with plush linens for a
+                        restful sleep. The spacious en-suite bathroom features marble
+                        accents and indulgent amenities. Immerse yourself in the opulent
+                        ambiance of our luxury room and indulge in an unforgettable stay.
+                    </p>
+                    <p>Rooms Available: {availRooms.large}</p>
+                    <p>Price: ${roomPrices.large} </p>
+                    {availRooms.large > 0 ? (
+                        <ResRoom
+                            size={"large"}
+                            checkInDate={checkInDate}
+                            checkOutDate={checkOutDate}
+                            price={roomPrices.large}
+                        />
+                    ) : (
+                        <p>Sorry, no rooms are available for these dates.</p>
+                    )}
                 </div>
+
               </div>
           </div>
         </div>

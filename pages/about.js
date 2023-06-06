@@ -17,10 +17,10 @@ const AboutPage = () => {
         </div>
 
         <div className={styles.aboutus}>
-          <p>Welcome to Duck's Nest, the ultimate destination for adventurous souls
+          <p>Welcome to Duck&apos;s Nest, the ultimate destination for adventurous souls
             <br />seeking a blend of exotic experiences and luxurious accommodations.<br />
 
-            At Duck's Nest, we understand the desires of young travelers who crave unique journeys,<br />
+            At Duck&apos;s Nest, we understand the desires of young travelers who crave unique journeys,<br />
             exploring far-flung corners of the world while indulging in the comforts of a splendid hotel.<br />
             <br />
             Our collection of properties offers a harmonious fusion of captivating environments,<br />
@@ -32,7 +32,7 @@ const AboutPage = () => {
             Whether you seek a cozy cabin in the wilderness or a luxurious suite overlooking breathtaking landscapes,<br />
             our diverse range of accommodations caters to every taste and preference.<br />
 
-            Let Duck's Nest be your companion as you create lifelong memories in the world's most enchanting destinations.<br />
+            Let Duck&apos;s Nest be your companion as you create lifelong memories in the world&apos;s most enchanting destinations.<br />
             <br />
             Book your room today and embark on a remarkable experience that will leave you craving for more.</p>
         </div>

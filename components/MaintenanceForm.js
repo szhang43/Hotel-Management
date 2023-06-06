@@ -76,23 +76,27 @@ const MaintenanceForm = () => {
 
             <div className={styles.containertwo}>
                 <h3 className={styles.titleline}>Current Maintenance Requests</h3>
-                 <ul>
-                    {maintenance.map((item) => {
-                        return (
-                            <li key={item.maintId} className={styles.details}>
-                                <p>Room Type: {item.roomSize}</p>
-                                 <p>Room ID: {item.roomId}</p>
-                                 <p>Maintenance ID: {item.maintId}</p>
-                                <p>Reason: {item.description}</p>
-                                <p>Date Submitted: {item.date}</p>
-                                <button className={styles.MaintButton} onClick={(e) => {
-                                    e.preventDefault()
-                                    removeMaintenance(item.maintId)
-                                }}>Remove Request</button>
-                            </li>
-                        )
-                    })}
-                </ul>
+                {maintenance.length > 0 ? (
+                    <ul>
+                        {maintenance.map((item) => {
+                            return (
+                                <li key={item.maintId} className={styles.details}>
+                                    <p>Room Type: {item.roomSize}</p>
+                                    <p>Room ID: {item.roomId}</p>
+                                    <p>Maintenance ID: {item.maintId}</p>
+                                    <p>Reason: <strong>{item.description}</strong></p>
+                                    <p>Date Submitted: {item.date}</p>
+                                    <button className={styles.MaintButton} onClick={(e) => {
+                                        e.preventDefault()
+                                        removeMaintenance(item.maintId)
+                                    }}>Remove Request</button>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                ) : (
+                    <p>No maintenance requests</p>
+                )}
             </div>
 
 
