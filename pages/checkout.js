@@ -2,14 +2,10 @@ import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-<<<<<<< HEAD
 import CheckoutForm from "@/components/PaymentForm";
-=======
-import styles from '@/styles/checkout.module.css';
->>>>>>> 4fe1e0a4425c0619844196cb2c4491d55a1690ca
+
 
 const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
-console.log("Stripe Public Key:", process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
 export default function Home() {
   const [clientSecret, setClientSecret] = useState('');
@@ -41,25 +37,19 @@ export default function Home() {
 
   return (
     <div>
-<<<<<<< HEAD
       <Head>
         <title>Stripe Elements</title>
       </Head>
       <h1 className="text-2xl bold mb-4 mt-4 text-center">
         Accept payments with credit card
       </h1>
+      <div className="flex justify-center m-auto w-1/2">
+      </div>
       {clientSecret && (
         <Elements options={options} stripe={stripe}>
           <CheckoutForm paymentIntent={paymentIntent} />
         </Elements>
       )}
-=======
-        <div className={styles.checkoutback}>
-            <Elements stripe={stripePromise}>
-            <PaymentForm />
-            </Elements>
-        </div>
->>>>>>> 4fe1e0a4425c0619844196cb2c4491d55a1690ca
     </div>
   );
 }
