@@ -252,6 +252,16 @@ const deleteMsgDB = async (msgId) => {
     }
 }
 
+const getAllAdminDB = async () => {
+    let allAdminId = []
+    const profileSnap = await getDocs(collection(db, "HTM2", "Hotel Info", "Staff"));
+    profileSnap.forEach((doc) => {
+        allAdminId.push(doc.get("userId"))
+    })
+    // console.log(allAdminId);
+    return allAdminId
+}
+
 
 
 
@@ -272,5 +282,6 @@ export {
     removeMaintenanceDB,
     addMsgDB,
     getMsgsDB,
-    deleteMsgDB
+    deleteMsgDB,
+    getAllAdminDB
 }
