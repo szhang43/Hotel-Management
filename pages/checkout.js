@@ -35,8 +35,9 @@ export default function Home() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                amount: 30000,
+                amount: resInfo.price * 100, // TODO: Change amount
                 payment_intent_id: '',
+                
             }),
         })
             .then((res) => res.json())
@@ -68,6 +69,7 @@ export default function Home() {
                         <Elements options={options} stripe={stripe}>
                             <CheckoutForm paymentIntent={paymentIntent} userData={userData} resData={resData} price={resInfo.price} />
                         </Elements>
+                        
                     )}
                 </div>    
             </div>

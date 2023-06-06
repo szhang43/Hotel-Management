@@ -7,6 +7,7 @@ import {
 import { bookRoomDB } from '@/firebase/firebaseUtils';
 import { useRouter } from 'next/router';
 import styles from '@/styles/checkout.module.css';
+import { getAuth } from "firebase/auth";
 
 export default function Form(props) {
     const [email, setEmail] = useState('');
@@ -19,6 +20,22 @@ export default function Form(props) {
 
     // console.log(props.userData);
     // console.log(props.resData);
+
+    const auth = getAuth(); 
+    const user = auth.currentUser; 
+
+    const appearance = {
+        theme: 'stripe'
+      };
+
+    const options = {
+        layout: {
+          type: 'accordion',
+          defaultCollapsed: false,
+          radios: true,
+          spacedAccordionItems: false
+        }
+    };
 
     useEffect(() => {
         setLocAmount(props.price);
@@ -60,7 +77,7 @@ export default function Form(props) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                amount: val * 100,
+                amount: props.price * 100,
                 payment_intent_id: props.paymentIntent,
             }),
         });
@@ -68,52 +85,48 @@ export default function Form(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         if (!stripe || !elements) {
             console.log('not loaded');
             // Stripe.js has not yet loaded.
             return;
         }
-
+    
         setIsLoading(true);
-
-        const error = await stripe.confirmPayment({
+    
+        const { error } = await stripe.confirmPayment({
             elements,
             redirect: "if_required",
             confirmParams: {
-                // return_url: 'http://localhost:3000/',
                 receipt_email: email,
-                shipping: {
-                    address: { city: 'NY' },
-                    name: 'Shipping user',
-                },
                 payment_method_data: {
                     billing_details: {
-                        name: 'Billing user',
+                        "name": `${user.displayName}`,
                     },
                 },
             },
-        })
-        .then(() => {
-                bookRoomDB(props.userData, props.resData)
-                .then(() => {
-                        router.push("/ResSuccess");
-                })
-
-        })
-
+        });
+    
         if (error) {
             if (error.type === 'card_error' || error.type === 'validation_error') {
                 setMessage(error.message);
             } else {
-                setMessage('An unexpected error occured.');
+                setMessage('An unexpected error occurred.');
             }
+            setIsLoading(false);
+        } else {
+            // Payment succeeded
+            bookRoomDB(props.userData, props.resData)
+                .then(() => {
+                    router.push("/ResSuccess");
+                })
+                .catch((error) => {
+                    setMessage('An error occurred while booking the room.');
+                    setIsLoading(false);
+                });
         }
-
-
-        setIsLoading(false);
     };
-
+    
     return (
         <>
             <form id="payment-form" onSubmit={handleSubmit} className="m-auto">
@@ -129,7 +142,7 @@ export default function Form(props) {
                         border-gray-300
                         shadow-sm h-16"
                         disabled
-                        // onChange={(e) => handleAmount(e.target.value)}
+                        onChange={(e) => handleAmount(e.target.value)}
                     />
                 </div>
                 <div className={styles.mail}>
@@ -147,7 +160,7 @@ export default function Form(props) {
                         placeholder="Enter email address"
                     />
                 </div>
-                <PaymentElement id="payment-element" />
+                <PaymentElement id="payment-element" options = {options} />
                 <button
                     className={styles.payButton}
                     disabled={isLoading || !stripe || !elements}
