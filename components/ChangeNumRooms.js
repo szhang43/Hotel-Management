@@ -30,6 +30,11 @@ const ChangeNumRooms = (props) => {
             return
         }
 
+        if (input < 0) {
+            alert("Please enter a positive number")
+            return
+        }
+
         let num = parseInt(input)
         if (e.target.value === "remove") {
             num = num * -1

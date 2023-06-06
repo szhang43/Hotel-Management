@@ -29,6 +29,11 @@ const ChangeRoomPrice = () => {
             return
         }
 
+        if (input < 0) {
+            alert("Please enter a positive number")
+            return
+        }
+
         let num = parseInt(input)
 
         setRoomPriceDB(size, num)
