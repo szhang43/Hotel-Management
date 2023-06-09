@@ -1,3 +1,8 @@
+/*
+    filename: _document.js
+    description: Defines document layout for app. Required by NextJS
+*/
+
 import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
