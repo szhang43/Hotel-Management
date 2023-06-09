@@ -25,7 +25,7 @@ function ForgotPasswordForm() {
       />
         <h3 className={styles.loginTitle}>Forgot Password</h3>
       <p className={styles.description}>
-        Enter your email and we'll send you a link to get back into your account.
+        Enter your email and we&apos;ll send you a link to get back into your account.
       </p>
       <input
         placeholder="Email"
