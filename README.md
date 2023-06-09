@@ -80,7 +80,7 @@ Additionally, sometimes downloading the env file causes it to be renamed. THE FI
 
 
 # Running the project locally
-### NodeJS must be installed and the env file must be in the "cs422_proj2/" folder first. Refer to the steps above.
+### NodeJS must be installed and the ".env" file must be in the "cs422_proj2/" folder first. Refer to the steps above.
 
 Once that is complete, open a terminal in the project's root directory and run: `npm install`
 
