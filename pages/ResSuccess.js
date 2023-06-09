@@ -1,3 +1,8 @@
+/* 
+    filename: ResSuccess.js
+    description: This page is shown to the user when a reservation is successfully made
+*/
+
 import React from "react";
 import styles from '@/styles/ResBooked.module.css';
 
