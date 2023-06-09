@@ -7,6 +7,11 @@ import LoginForm from "@/components/Login";
 import ForgotPasswordForm from "@/components/ForgotPass";
 import styles from "@/styles/Login.module.css";
 
+/* This file contains the react components for the Login Page.
+It renders the login form as well as the registration form and
+the forgot password form. Based on user actions the different forms
+are toggled.*/
+
 function Login() {
   const [user, setUser] = useState({});
   const [showRegisterForm, setShowRegisterForm] = useState(false);
