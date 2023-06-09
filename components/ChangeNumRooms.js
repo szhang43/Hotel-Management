@@ -1,3 +1,9 @@
+/*
+    filename: ChangeNumRooms.js
+    description: This file contains the component that displays the current room prices and
+        allows an admin to change them.
+*/
+
 import React, { useState, useEffect } from 'react';
 import { getAvailRoomsDB, setNumRoomDB, getTotalRoomsDB } from '@/firebase/firebaseUtils';
 import styles from '@/styles/Admin.module.css';

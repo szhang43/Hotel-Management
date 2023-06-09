@@ -1,3 +1,9 @@
+/*
+    filename: ResRoom.js
+    description: This file contains the component that displays the reserve room button
+        and handles sending the required information to the checkout page.
+*/
+
 import React from 'react';
 // import { bookRoomDB } from '@/firebase/firebaseUtils';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';

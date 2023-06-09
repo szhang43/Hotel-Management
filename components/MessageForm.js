@@ -1,3 +1,10 @@
+/*
+    filename: MessageForm.js
+    author: Luke Scribner
+    description: This file contains the component that displays any messages in the database and
+        calls the function to delete them.
+*/
+
 import React, { useState, useEffect } from 'react';
 import { getMsgsDB, deleteMsgDB } from '@/firebase/firebaseUtils';
 import styles from '@/styles/Admin.module.css';

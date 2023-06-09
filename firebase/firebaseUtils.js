@@ -1,6 +1,16 @@
+/*
+    filename: firebaseUtils.js
+    author: Luke Scribner
+    description: This file contains all the functions that interact with the firestore database.
+        These functions are imported in other files as needeed for things like
+        the reservation system and admin functions.
+*/
+
 import { db } from "./initFirebase"
 import { doc, collection, getDoc, getDocs, setDoc, addDoc, updateDoc, deleteDoc } from "firebase/firestore";
 
+
+// read from db to be used with getAvailRoomsDB
 const readDB = async (locArr) => {
     try {
         const userDoc = doc(db, ...locArr)
@@ -18,7 +28,8 @@ const readDB = async (locArr) => {
     }
 }
 
-
+// get total of all rooms from database, then subtract those that have check-in or check-out dates
+// that conflict with the customer's check-in and check-out dates, and those that are marked for maintenance
 const getAvailRoomsDB = async (checkInDate, checkOutDate) => {
     const locArr = ["HTM2", "Hotel Info"]
     let totalRooms = await readDB(locArr).then((data) => {
@@ -57,6 +68,7 @@ const getAvailRoomsDB = async (checkInDate, checkOutDate) => {
 
 }
 
+// get total number of rooms regardless of availability
 const getTotalRoomsDB = async () => {
     const locArr = ["HTM2", "Hotel Info"]
     return await readDB(locArr).then((data) => {
@@ -64,14 +76,14 @@ const getTotalRoomsDB = async () => {
     })
 }
 
-
+// add a new user to the database
 const writeUserDB = async (userData) => {
     // console.log(userData);
     const locArr = ["HTM2", "Hotel Info", "Profile"]
     await setDoc(doc(db, ...locArr, userData.uid), userData)
 }
 
-
+// reserve a room in the database
 const bookRoomDB = async (userData, resData) => {
     const customer = {
         customerId: userData.uid,
@@ -111,9 +123,7 @@ const bookRoomDB = async (userData, resData) => {
     })
 }  
 
-
-
-
+// delete reservation from database
 const deleteResDB = async (resId, userId) => {
     // delete res doc from res collection
     const resDoc = doc(db, "HTM2", "Hotel Info", "Reservations", resId)
@@ -134,7 +144,7 @@ const deleteResDB = async (resId, userId) => {
     }
 }
 
-
+// get all profile ids
 const getAllProfileDB = async () => {
     let allUserId = []
     const profileSnap = await getDocs(collection(db, "HTM2", "Hotel Info", "Profile"));
@@ -145,6 +155,7 @@ const getAllProfileDB = async () => {
     return allUserId
 }
 
+// get all customer ids
 const getAllCustDB = async () => {
     let allCustId = []
     const profileSnap = await getDocs(collection(db, "HTM2", "Hotel Info", "Customer"));
@@ -155,7 +166,7 @@ const getAllCustDB = async () => {
     return allCustId
 }
 
-
+// get all reservations
 const listAllResDB = async () => {
     let allRes = []
 
@@ -167,7 +178,7 @@ const listAllResDB = async () => {
     return allRes
 }
 
-
+// get room prices
 const getRoomPricesDB = async () => {
     const dbSnap = await getDoc(doc(db, "HTM2", "Hotel Info"));
     let roomPrices = dbSnap.get("Room Price")
@@ -175,6 +186,7 @@ const getRoomPricesDB = async () => {
     return roomPrices
 }
 
+// change the total number of available rooms
 const setNumRoomDB = async (roomSize, numRooms) => {
     const docSnap = await getDoc(doc(db, "HTM2", "Hotel Info"))
     let sizes = docSnap.data()["Room Inventory"]
@@ -183,6 +195,7 @@ const setNumRoomDB = async (roomSize, numRooms) => {
     await updateDoc(doc(db, "HTM2", "Hotel Info"), {"Room Inventory": sizes})
 }
 
+// ser room prices
 const setRoomPriceDB = async (roomSize, price) => {
     const docSnap = await getDoc(doc(db, "HTM2", "Hotel Info"))
     let prices = docSnap.data()["Room Price"]
@@ -191,6 +204,7 @@ const setRoomPriceDB = async (roomSize, price) => {
     await updateDoc(doc(db, "HTM2", "Hotel Info"), {"Room Price": prices})
 }
 
+// add a maintenance order
 const addMaintenanceDB = async (roomSize, roomId, mReason) => {
     const dateToday = new Date().toLocaleDateString('fr-ca')
 
@@ -204,6 +218,7 @@ const addMaintenanceDB = async (roomSize, roomId, mReason) => {
     await updateDoc(doc(db, "HTM2", "Hotel Info", "Work Order", docRef.id), {maintId: docRef.id})
 }
 
+// get all maintenance orders
 const getMaintenanceDB = async () => {
     let allMaintenance = []
 
@@ -215,6 +230,7 @@ const getMaintenanceDB = async () => {
     return allMaintenance
 }
 
+// delete maintenance order
 const removeMaintenanceDB = async (maintId) => {
     const docSnap = await getDoc(doc(db, "HTM2", "Hotel Info", "Work Order", maintId))
     if(docSnap.exists()){
@@ -224,6 +240,7 @@ const removeMaintenanceDB = async (maintId) => {
     }
 }
 
+// add a message from the homepage to the database
 const addMsgDB = async (msg) => {
     const dateToday = new Date().toLocaleDateString('fr-ca')
 
@@ -232,6 +249,7 @@ const addMsgDB = async (msg) => {
 
 }
 
+// get all messages
 const getMsgsDB = async () => {
     let allMsgs = []
 
@@ -243,6 +261,7 @@ const getMsgsDB = async () => {
     return allMsgs
 }
 
+// delete message
 const deleteMsgDB = async (msgId) => {
     const docSnap = await getDoc(doc(db, "HTM2", "Hotel Info", "Messages", msgId))
     if(docSnap.exists()){
@@ -252,6 +271,7 @@ const deleteMsgDB = async (msgId) => {
     }
 }
 
+// get all admin ids
 const getAllAdminDB = async () => {
     let allAdminId = []
     const profileSnap = await getDocs(collection(db, "HTM2", "Hotel Info", "Staff"));
