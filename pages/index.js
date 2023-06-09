@@ -1,3 +1,10 @@
+/* 
+    filename: index.js
+    description: This is the homepage for the app. It imports the component for the google maps integration,
+        and handles making reservations and sending messages from the contact form to the database
+        
+*/
+
 import React, { useEffect, useState } from 'react';
 import styles from '@/styles/Index.module.css';
 import Map from '@/components/Map';
@@ -15,9 +22,8 @@ const DuckNest = () => {
     const [checkInDate, setCheckInDate] = React.useState(dateToday);
     const [checkOutDate, setCheckOutDate] = React.useState("");
     const [availRooms, setAvailRooms] = useState({large: 0, medium: 0, small: 0})
-    /*const [name, setName] = useState();
-    const [email, setEmail] = useState();*/
 
+    // update available rooms on page load
     useEffect(() => {
         const updateAvailRooms = () => {
             getAvailRoomsDB(checkInDate, checkOutDate)
@@ -31,7 +37,7 @@ const DuckNest = () => {
     }, [checkInDate, checkOutDate])
 
 
-
+    // route user when they attempt to make a reservation
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent form submission and page reload
         const user = auth.currentUser;
@@ -53,6 +59,7 @@ const DuckNest = () => {
         return newDate.toLocaleDateString('fr-ca');
     }
 
+    // send message and other info to database when contact form is submitted
     const handleContactSubmit = async (e) => {
         e.preventDefault();
 
@@ -148,8 +155,6 @@ const DuckNest = () => {
                                 </div>
                                 <button className={styles.searchButton}> Send Message </button>
                             </form>
-                            {/*<p>+1-800-DUCKS</p>
-                            <p>contact@ducksnest.com</p>*/}
                         </div>
                     </div>
                 </div>
