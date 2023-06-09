@@ -11,6 +11,7 @@ const Reservation = () => {
     const {checkInDate, checkOutDate} = router.query;
     const [availRooms, setAvailRooms] = useState({large: 0, medium: 0, small: 0})
     const [roomPrices, setRoomPrices] = useState({large: 0, medium: 0, small: 0})
+    const [daysBooked, setDaysBooked] = useState(0)
 
 
     useEffect(() => {
@@ -27,8 +28,13 @@ const Reservation = () => {
                 setRoomPrices(data)
             })
         }
-
         updateRoomInfo()
+
+        const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+        const diffDays = Math.round(Math.abs((new Date(checkOutDate) - new Date(checkInDate)) / oneDay));
+        // console.log(diffDays)
+        setDaysBooked(diffDays)
+
     }, [checkInDate, checkOutDate])
 
 
@@ -66,10 +72,6 @@ const Reservation = () => {
               </p>
             </div>
       
-              {/* These can be deleted unless we want to keep them */}
-              {/* <p>Available Large Rooms: {availRooms.large}</p>
-              <p>Available Medium Rooms: {availRooms.medium}</p>
-              <p>Available Small Rooms: {availRooms.small}</p> */}
       
               <div className={styles.roomContainer}>
                 
@@ -86,13 +88,13 @@ const Reservation = () => {
                         detail is thoughtfully arranged to ensure a memorable experience.
                     </p>
                     <p>Rooms Available: {availRooms.small}</p>
-                    <p>Price: ${roomPrices.small}</p>
+                    <p>Price: ${roomPrices.small * daysBooked}  ({daysBooked} nights at ${roomPrices.small} per night)</p>
                     {availRooms.small > 0 ? (
                         <ResRoom
                             size={"small"}
                             checkInDate={checkInDate}
                             checkOutDate={checkOutDate}
-                            price={roomPrices.small}
+                            price={roomPrices.small * daysBooked}
                         />
                     ) : (
                         <p>Sorry, no rooms are available for these dates.</p>
@@ -114,13 +116,13 @@ const Reservation = () => {
                         elegance intertwine harmoniously.
                     </p>
                     <p>Rooms Available: {availRooms.medium}</p>
-                    <p>Price: ${roomPrices.medium}</p>
+                    <p>Price: ${roomPrices.medium * daysBooked}  ({daysBooked} nights at ${roomPrices.medium} per night)</p>
                     {availRooms.medium > 0 ? (
                         <ResRoom
                             size={"medium"}
                             checkInDate={checkInDate}
                             checkOutDate={checkOutDate}
-                            price={roomPrices.medium}
+                            price={roomPrices.medium * daysBooked}
                         />
                     ) : (
                         <p>Sorry, no rooms are available for these dates.</p>
@@ -138,13 +140,13 @@ const Reservation = () => {
                         ambiance of our luxury room and indulge in an unforgettable stay.
                     </p>
                     <p>Rooms Available: {availRooms.large}</p>
-                    <p>Price: ${roomPrices.large} </p>
+                    <p>Price: ${roomPrices.large * daysBooked}  ({daysBooked} nights at ${roomPrices.large} per night)</p>
                     {availRooms.large > 0 ? (
                         <ResRoom
                             size={"large"}
                             checkInDate={checkInDate}
                             checkOutDate={checkOutDate}
-                            price={roomPrices.large}
+                            price={roomPrices.large * daysBooked}
                         />
                     ) : (
                         <p>Sorry, no rooms are available for these dates.</p>
