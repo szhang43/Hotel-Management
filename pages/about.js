@@ -2,6 +2,10 @@ import React from 'react';
 import styles from '@/styles/about.module.css';
 import Image from 'next/image';
 
+/* This file contains the react components for the about us page.
+This file is to render the content for the page which includes an
+image, title, and description.*/
+
 const AboutPage = () => {
   return (
     <><Image
@@ -9,7 +13,7 @@ const AboutPage = () => {
       src="/img/abt.png"
       alt="Pool"
       fill />
-      
+
       <div className={styles.container}>
 
         <div className={styles.aboutTitle}>
