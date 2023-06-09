@@ -7,7 +7,8 @@ import MessageForm from '@/components/MessageForm';
 import { getAllAdminDB } from '@/firebase/firebaseUtils';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
-
+/*This file checks the users admin status and renders different content
+based on the result. The react components for the admin page are here.*/
 
 const Admin = () => {
     const [isAdmin, setIsAdmin] = useState(false)
