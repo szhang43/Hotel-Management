@@ -38,7 +38,7 @@ const getAvailRoomsDB = async (checkInDate, checkOutDate) => {
             // check out date between bookedFrom and bookedTo
             custOut > roomIn &&
             custOut <= roomOut ||
-
+            // check in date before bookedFrom and check out date after bookedTo
             custIn <= roomIn &&
             custOut >= roomOut
 
