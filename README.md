@@ -32,7 +32,7 @@ To verify installation, enter: `command -v nvm`. This should return 'nvm', if yo
 
 Verify installation with `nvm -v`, you should see a version number
 
-Install both versions of nodejs and npm with: `nvm install --lts` and `nvm install node`
+Install versions of nodejs and npm with: `nvm install --lts` and `nvm install node`
 
 Verify nodejs has been installed with: `node -v`, you should see: v20.3.0
 
