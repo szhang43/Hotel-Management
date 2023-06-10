@@ -4,12 +4,12 @@ import { auth } from "@/firebase/initFirebase";
 import styles from '@/styles/Login.module.css';
 
 
-function ForgotPasswordForm() {
+function ForgotPasswordForm() { // allow user to reset their pass word
   const [registerEmail, setRegisterEmail] = useState("");
 
   async function forgotPass() {
     try {
-      await sendPasswordResetEmail(auth, registerEmail);
+      await sendPasswordResetEmail(auth, registerEmail); // user fire auth's forgot pass function
       alert("Check your email to reset the password");
     } catch (error) {
       alert(error.message);
