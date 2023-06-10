@@ -20,23 +20,23 @@ Required packages:
 # Installing NodeJS and git
 
 ## Linux instructions (tested on Ubuntu 22.04.2)
-Open terminal
+Open terminal - Verify the git is intalled with git --version or [installGit](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-Install cURL with: `sudo apt install curl`
+Install curl with: `sudo apt install curl`
 
 Install git with: `sudo apt install git`
 
 Install nvm with: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash`
 
-Close and reopen terminal
+To verify installation, enter: `command -v nvm`. This should return 'nvm', if you receive 'command not found' or no response at all, close your current terminal and try again
 
 Verify installation with `nvm -v`, you should see a version number
 
-Install nodejs and npm with: `nvm install --lts`
+Install both versions of nodejs and npm with: `nvm install --lts` and `nvm install node`
 
-Verify nodejs has been installed with: `node -v`, you should see: v18.16.0
+Verify nodejs has been installed with: `node -v`, you should see: v20.3.0
 
-Verify npm has been installed with: `npm -v`, you should see: 9.5.1
+Verify npm has been installed with: `npm -v`, you should see: 9.6.7
 
 
 
