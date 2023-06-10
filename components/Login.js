@@ -1,3 +1,9 @@
+/*
+Filename: Login.js
+Description: 
+This file allows users to login and have the user state set to the
+current logged in user. 
+*/
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from 'next/router';
@@ -5,9 +11,9 @@ import { auth } from "@/firebase/initFirebase";
 import styles from '@/styles/Login.module.css';
 
 function LoginForm() {
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const router = useRouter();
+  const [loginEmail, setLoginEmail] = useState(""); // set and store user email
+  const [loginPassword, setLoginPassword] = useState(""); // set and store user password
+  const router = useRouter(); // router functiont o re route pages
   
   async function login() { // firebase auth login functions 
     try {
