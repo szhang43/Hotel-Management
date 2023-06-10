@@ -1,3 +1,11 @@
+/**
+ * NavBar Component
+ * 
+ * This component represents the navigation bar of the hotel website.
+ * It displays the logo, navigation links, and user-related links.
+ * 
+ */
+
 import Link from 'next/link';
 import styles from '../styles/NavBar.module.css';
 import { auth } from '@/firebase/initFirebase';
@@ -6,7 +14,10 @@ import {useEffect, useState} from "react";
 import { getAllAdminDB } from '@/firebase/firebaseUtils';
 
 
-
+/**
+ * Represents the NavBar component, which is the navigation bar of the hotel website.
+ * 
+ */
 const NavBar = () => {
 
     const [user, setUser] = useState("");

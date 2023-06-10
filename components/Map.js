@@ -1,6 +1,19 @@
+/**
+ * Map Component
+ * 
+ * This component renders a map based on the provided address using the Google Maps API.
+ * It loads the necessary Google Maps API and geocodes the address to obtain the map location.
+ * 
+ */
+
+
 import { useState, useEffect } from 'react';
 import loader from '@/components/googleMapsLoader';
 
+/**
+ * Map Component
+ * 
+ */
 const Map = ({ address }) => {
     const [map, setMap] = useState(null);
     useEffect(() => {

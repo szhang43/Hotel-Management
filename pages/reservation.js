@@ -1,3 +1,12 @@
+/**
+FileName: Reservation.js
+Description:
+React component representing a reservation page for selecting and booking hotel rooms.
+This component renders a reservation page where users can select their desired check-in and check-out dates.
+It displays information about available rooms, their prices, and allows users to make reservations for the chosen dates.
+The component uses Firebase functions to fetch available rooms and their prices from the database.
+*/
+
 import React from 'react';
 import { useRouter } from 'next/router';
 import ResRoom from '@/components/ResRoom';

@@ -1,3 +1,12 @@
+/*
+Filename: PaymentForm.js
+Description:
+The `Form` component provides a checkout form for processing payments using Stripe. 
+It includes a payment element, email input field, and a pay button.
+Users can enter their email address, provide payment details, and submit the form to make a payment.
+The component handles form submission, payment confirmation, and booking of the room upon successful payment.
+*/
+
 import React, { useEffect, useState } from 'react';
 import {
     PaymentElement,

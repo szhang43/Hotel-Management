@@ -1,3 +1,11 @@
+/**
+ * Footer Component
+ * 
+ * This component represents the footer section of the hotel website.
+ * It displays the footer header with information about the hotel management system.
+ * 
+ */
+
 import React from 'react';
 import styles from '../styles/footer.module.css';
 

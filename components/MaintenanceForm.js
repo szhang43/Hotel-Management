@@ -1,13 +1,32 @@
+/**
+ * MaintenanceForm Component
+ * 
+ * This component renders a form for making maintenance requests and displays the current maintenance requests.
+ * It allows users to fill out the form and submit maintenance requests. It also shows a list of existing maintenance requests
+ * and provides the functionality to remove a maintenance request.
+ * 
+ */
+
+
+
 import React, { useState, useEffect } from 'react';
 import { addMaintenanceDB, getMaintenanceDB, removeMaintenanceDB } from '@/firebase/firebaseUtils';
 import styles from '@/styles/Admin.module.css';
 
+/**
+ * MaintenanceForm Component
+ * 
+ * @returns {JSX.Element} - Rendered component.
+ */
 const MaintenanceForm = () => {
     const [size, setSize] = useState("");
     const [reason, setReason] = useState("");
     const [roomId, setRoomId] = useState("");
     const [maintenance, setMaintenance] = useState([])
 
+    /**
+     * Update the maintenance list from the database.
+     */
     const updateMaintenance = () => {
         getMaintenanceDB()
         .then((data) => {
@@ -20,7 +39,11 @@ const MaintenanceForm = () => {
     }, [])
 
 
-
+    /**
+     * Handle the form submission for adding a maintenance request.
+     * 
+     * @param {Object} e - The form submission event.
+     */
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -35,6 +58,11 @@ const MaintenanceForm = () => {
         })
     }
 
+    /**
+     * Remove a maintenance request from the database.
+     * 
+     * @param {string} maintId - The ID of the maintenance request to remove.
+     */
     const removeMaintenance = (maintId) => {
         console.log(maintId);
         removeMaintenanceDB(maintId)

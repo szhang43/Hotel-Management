@@ -1,3 +1,12 @@
+/*
+Filename: Register.js
+Description: 
+The `RegisterForm` component provides a registration form for users to create an account.
+It includes input fields for first name, last name, phone number, email, and password.
+Users can enter their information and click the "Create Account" button to register.
+Upon successful registration, the user's information is stored in the database.
+*/
+
 import React, { useState, useEffect } from "react";
 import { createUserWithEmailAndPassword, updateProfile, updatePhoneNumber, onAuthStateChanged} from "firebase/auth";
 import { auth } from "@/firebase/initFirebase";
