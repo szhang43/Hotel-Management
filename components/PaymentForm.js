@@ -21,13 +21,11 @@ export default function Form(props) {
     // console.log(props.userData);
     // console.log(props.resData);
 
+    //Get the Firebase authentication and current user
     const auth = getAuth(); 
     const user = auth.currentUser; 
 
-    const appearance = {
-        theme: 'stripe'
-      };
-
+    //Define layout optionjs for the payment element 
     const options = {
         layout: {
           type: 'accordion',
@@ -37,6 +35,7 @@ export default function Form(props) {
         }
     };
 
+    //Update the local amount state when the price prop changes
     useEffect(() => {
         setLocAmount(props.price);
 
@@ -52,7 +51,7 @@ export default function Form(props) {
         if (!clientSecret) {
             return;
         }
-
+        //Retrieve payment intent from the stripe api using the client's secret
         stripe.retrievePaymentIntent(clientSecret).then(({ props }) => {
             switch (props.status) {
                 case 'succeeded':
@@ -71,18 +70,20 @@ export default function Form(props) {
         });
     }, [stripe, props.price]);
 
-    const handleAmount = async (val) => {
-        setLocAmount(val);
-        fetch('api/stripe_intent', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                amount: props.price * 100,
-                payment_intent_id: props.paymentIntent,
-            }),
-        });
-    };
+    //Handle the form submission and confirm the payment with Stripe 
+    // const handleAmount = async (val) => {
+    //     setLocAmount(val);
+    //     fetch('api/stripe_intent', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify({
+    //             amount: props.price * 100,
+    //             payment_intent_id: props.paymentIntent,
+    //         }),
+    //     });
+    // };
 
+    //Handle form submission and confirm the payment with stripe
     const handleSubmit = async (e) => {
         e.preventDefault();
     
@@ -93,7 +94,8 @@ export default function Form(props) {
         }
     
         setIsLoading(true);
-    
+        
+        //Confirm payment and send billing details
         const { error } = await stripe.confirmPayment({
             elements,
             redirect: "if_required",
@@ -142,7 +144,7 @@ export default function Form(props) {
                         border-gray-300
                         shadow-sm h-16"
                         disabled
-                        onChange={(e) => handleAmount(e.target.value)}
+                        // onChange={(e) => handleAmount(e.target.value)}
                     />
                 </div>
                 <div className={styles.mail}>
