@@ -15,11 +15,13 @@ function RegisterForm() {
   
   const router = useRouter();
 
+  //regex to verify if email and phone number is on the right format 
   var emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   var phoneNumberPattern = /^\d{3}-\d{3}-\d{4}$/;
   
   const [user, setUser] = useState("");
   
+  // set user to logged in user after registering 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       setUser(currentUser);
@@ -29,7 +31,8 @@ function RegisterForm() {
       unsubscribe();
     };
   }, []);
-
+  
+  //checks if the form is valid, making sure all fields are not empty 
   const isFormValid = () => {
     if (
       registerEmail.trim() === "" ||
@@ -41,11 +44,12 @@ function RegisterForm() {
       alert("Please fill in all fields.");
       return false;
     }
-    
+    // checks if email field is invalid
     else if (!emailPattern.test(registerEmail)) {
       alert("Please enter a valid email address");
       return false;
     }
+    //checks if phone number field is invalid
     else if (!phoneNumberPattern.test(registerPhoneNumber)) {
       alert("Please enter a valid phone number in the format XXX-XXX-XXXX");
       return false;
@@ -54,6 +58,7 @@ function RegisterForm() {
     return true;
   };
 
+  //clear form, set to "" after form is submitted
   const clearForm = () => {
     setRegisterEmail("");
     setRegisterPassword("");
@@ -62,27 +67,25 @@ function RegisterForm() {
     setPhoneNumber("");
   };
 
-
+    // functions to register user 
     async function register() {
         try {
-          if (!isFormValid()) {
+          if (!isFormValid()) { // checks if form is invalid
             return;
           }
+            //storing user credentials 
             const userCredential = await createUserWithEmailAndPassword(
                 auth,
                 registerEmail,
                 registerPassword
-            );
+            ); 
             const user = userCredential.user;
             const fullName = `${registerFirstName} ${registerLastName}`;
+            //update profile of user with name 
             await updateProfile(user, {
                 displayName: fullName,
             })
-            
-            // await updatePhoneNumber(user, {
-              //   phoneNumber: registerPhoneNumber,
-              // });
-              
+
               // format user data and send to database
               const userData = {
                 custFirstName: registerFirstName,
@@ -91,11 +94,11 @@ function RegisterForm() {
                 phoneNum: registerPhoneNumber,
                 uid: user.uid
               }
-              await writeUserDB(userData);
+              await writeUserDB(userData); // send user data to db
               clearForm();
-              router.push("/");
+              router.push("/"); // redirect to home page 
 
-        } catch(error) {
+        } catch(error) { // catch for errors
             alert(error.message);
         }
     }
@@ -113,31 +116,31 @@ function RegisterForm() {
       </p>
       <input
         placeholder="First Name"
-        onChange={(event) => setFirstName(event.target.value)}
+        onChange={(event) => setFirstName(event.target.value)} // set and store first name
       />
 
       <input
         placeholder="Last Name"
-        onChange={(event) => setLastName(event.target.value)}
+        onChange={(event) => setLastName(event.target.value)} // set and store last name
       />
 
       <input
         placeholder="000-000-0000"
-        onChange={(event) => setPhoneNumber(event.target.value)}
+        onChange={(event) => setPhoneNumber(event.target.value)} // set phone number
       />
 
       <input
         placeholder="Email"
-        onChange={(event) => setRegisterEmail(event.target.value)}
+        onChange={(event) => setRegisterEmail(event.target.value)} //set and store email
       />
 
       <input
         type="password"
         placeholder="Password"
-        onChange={(event) => setRegisterPassword(event.target.value)}
+        onChange={(event) => setRegisterPassword(event.target.value)} // set and store password
       />
-
-      <button className={styles.button} onClick={register}>Create Account</button>
+      
+      <button className={styles.button} onClick={register}>Create Account</button> 
     </div>
   );
 }
