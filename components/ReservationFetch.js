@@ -14,8 +14,11 @@ function Reservation() {
       try {
         const userId = auth.currentUser.uid; // Get the UID of the currently logged-in user
 
+        //create reference to the Reservation collection in the database
         const resRef = collection(db, "HTM2", "Hotel Info", "Reservations");
-        const q = query(resRef, where("bookedBy", "==", userId));
+        //Create a query to get reservation        
+        const q = query(resRef, where("bookedBy", "==", userId)); // check if bookedby matches the current userID
+        // Execute the query and retrieve snapshot of matching documents in database
         const snapshot = await getDocs(q);
 
         const reservationsData = [];
@@ -23,7 +26,7 @@ function Reservation() {
           const reservation = doc.data();
           reservationsData.push(reservation);
         });
-
+        //set the retrieved reseration in the state
         setReservations(reservationsData);
       } catch (error) {
         console.error("Error fetching reservations:", error);
@@ -34,13 +37,15 @@ function Reservation() {
   }, []);
 
 
+  // Canceling a reservation
   const cancelRes = async (resId) => {
-    await deleteResDB(resId, auth.currentUser.uid);
-    alert(`Reservation with ID "${resId}" has been cancelled`)
-    Router.reload();
+    await deleteResDB(resId, auth.currentUser.uid); //delete function to delete from db
+    alert(`Reservation with ID "${resId}" has been cancelled`); // send an alert message
+    Router.reload(); //reload the page to update reservation information
   }
 
   return (
+    // HTML to display reservation information
     <div>
       {reservations.length > 0 ? (
         <ul >
@@ -56,7 +61,7 @@ function Reservation() {
             </li>
           ))}
         </ul>
-      ) : (
+      ) : ( // If user has reservations display reservation info, else show no reservation
         <p>You currently have no reservations.</p>
       )}
     </div>
