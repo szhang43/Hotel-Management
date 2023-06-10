@@ -9,12 +9,12 @@ function LoginForm() {
   const [loginPassword, setLoginPassword] = useState("");
   const router = useRouter();
   
-  async function login() {
+  async function login() { // firebase auth login functions 
     try {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-      router.push("/");
+      router.push("/"); // sign in and re-route to home page 
     } catch (error) {
-      alert(error.message);
+      alert(error.message); // if login is not successfull, then it will show alert 
     }
   }
 
@@ -33,13 +33,13 @@ function LoginForm() {
          manage your bookings, and more. Login to your account now!</p>
         <input
           placeholder="Email"
-          onChange={(event) => setLoginEmail(event.target.value)}
+          onChange={(event) => setLoginEmail(event.target.value)} // set and store login email enetered
         />
 
         <input
           type="password"
           placeholder="Password"
-          onChange={(event) => setLoginPassword(event.target.value)}
+          onChange={(event) => setLoginPassword(event.target.value)} // set and store login pass enetered
         />
         <button className={styles.button} onClick={login}>
           Login
