@@ -1,3 +1,12 @@
+/**
+ * Hotel Website User Profile Page
+ * 
+ * This component represents the user profile page of the hotel website.
+ * It displays user information, such as name, email, and phone number.
+ * It also fetches and displays user reservations.
+ * 
+ */
+
 import {useEffect, useState} from "react";
 import Link from 'next/link';
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
