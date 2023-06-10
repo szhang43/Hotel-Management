@@ -1,3 +1,14 @@
+/*
+Fileanme: ReservationFetch.js
+Description: 
+The `Reservation` component displays a list of reservations for the logged-in user.
+It retrieves the reservations from the database based on the user's UID.
+The reservations are fetched and displayed in a list format.
+Each reservation includes information such as ID, status, room size, check-in date, and check-out date.
+The user can cancel a reservation by clicking the "Cancel Reservation" button.
+Upon cancellation, the reservation is deleted from the database.
+ */
+
 import React, { useEffect, useState } from "react";
 import { auth, db } from "@/firebase/initFirebase"; // Assuming you have initialized Firebase with the "db" instance
 import {collection, query, where, getDocs } from "firebase/firestore";
