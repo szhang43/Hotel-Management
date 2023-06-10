@@ -1,3 +1,13 @@
+/**
+ * Hotel Website Checkout Page
+ * 
+ * This component represents the checkout page of the hotel website.
+ * It handles the payment process using Stripe API and displays the payment form.
+ * It retrieves necessary information from the query parameters and passes them to the payment form component.
+ * 
+ */
+
+
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
