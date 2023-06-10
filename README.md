@@ -85,3 +85,23 @@ Once that is complete, open a terminal in the project's root directory and run: 
 
 Finally run `npm run dev` in root folder and open the url displayed in your terminal in a web browser (most likely [http://localhost:3000/](http://localhost:3000/))
 
+
+
+# Directory Structure
+## components
+Contains React components that are included in various pages to provide additional functionality
+
+## firebase
+Contains "initFirebase.js" which loads the project's Firestore database and Firebase authentication for user account creation/management.
+
+Also includes "firebaseUtils.js" which contains all the functions for communicating with the Firestore database
+
+## pages
+Contains all pages for the project, as well as the api/ folder which is used for api endpoints
+
+## public/img
+Contains all images used across the pages and components
+
+## styles
+Contains all css files used across the pages and components
+
