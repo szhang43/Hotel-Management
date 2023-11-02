@@ -1,5 +1,5 @@
 # CS422 Project 2: Duck's Nest
-Currently hosted [here](https://lukescribner.com/)
+
 
 ## Description
 This repository contains the front-end and back-end for Duck's Nest, a web app for hotel management and reservations.
